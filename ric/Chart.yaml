@@ -14,11 +14,11 @@ type: application
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 6.2.X
+version: 6.2.5-rc.X
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
-appVersion: 6.2.X
+appVersion: 6.2.5-rc.X
 
 # Dependencies
 dependencies:
@@ -36,7 +36,7 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: dash-front-back-end
     condition: dash-front-back-end.enabled
-    version: 4.2.2
+    version: 4.3.0
     repository: https://accelleran.github.io/helm-charts/
   - name: loki-stack
     version: 0.43.0
@@ -97,5 +97,5 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: acc-network-state-monitor
     condition: acc-network-state-monitor.enabled
-    version: 1.0.4
+    version: 1.0.5
     repository: https://accelleran.github.io/helm-charts/
