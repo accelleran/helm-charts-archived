@@ -274,8 +274,8 @@ netconf:
     repository: accelleran/cw-netconf
     tag: "{{ .Values.global.tag }}"
 
-  netconfService:
-    nodePort: 31830
+  # netconfService:
+  #   nodePort: 31830
 
   bootstrapId: "{{ .Values.global.instanceId }}"
 
