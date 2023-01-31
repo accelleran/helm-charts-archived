@@ -2,7 +2,6 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-
 # For mounting the accelleran license
 accelleranLicense:
   enabled: "true"
@@ -15,7 +14,7 @@ mode: "5g"
 image:
   repository: accelleran/golang-nkafka-5g
   pullPolicy: IfNotPresent
-  tag: "1.1.0_R3.3.0_hoegaarden"
+  tag: "1.2.0_R3.3.0_hoegaarden_CW2.0.0-rc.5"
 
 initImage:
   repository: accelleran/acc-generic-img
@@ -43,7 +42,8 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name:
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
 securityContext:
@@ -54,7 +54,8 @@ securityContext:
   # runAsNonRoot: true
   runAsUser: 0
 
-resources: {}
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
