@@ -97,5 +97,5 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: acc-network-state-monitor
     condition: acc-network-state-monitor.enabled
-    version: 1.0.5
+    version: 1.0.9
     repository: https://accelleran.github.io/helm-charts/
