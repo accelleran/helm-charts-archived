@@ -9,19 +9,10 @@ global:
 
           <ssh-connection-details xc:operation="create">
             <host>127.0.0.1</host>
-            <port>22</port>
             <username>root</username>
           </ssh-connection-details>
 
-          <image>gnb_du_main_phluido:</image>
-          <version>2022-08-26-q2-release-0.4</version>
-          <extra-args></extra-args>
-          <pcscd-socket>/run/pcscd/pcscd.comm</pcscd-socket>
-
           <l1 xc:operation="create">
-            <image>phluido_l1</image>
-            <version>v8.7.4</version>
-            <extra-args></extra-args>
             <phluido-l1-config xc:operation="create">
               <license-key>XXXX-YYYY-ZZZZ-WWWW</license-key>
               <bbu-addr>10.10.0.1</bbu-addr>
@@ -38,7 +29,6 @@ global:
 
             <ssh-connection-details xc:operation="create">
               <host>127.0.0.1</host>
-              <port>22</port>
               <username>root</username>
             </ssh-connection-details>
 
