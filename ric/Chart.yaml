@@ -93,7 +93,7 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: config-api
     condition: config-api.enabled
-    version: 2.0.0
+    version: 0.1.0
     repository: https://accelleran.github.io/helm-charts/
   - name: acc-network-state-monitor
     condition: acc-network-state-monitor.enabled
