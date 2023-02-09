@@ -23,9 +23,9 @@ global:
   #                 '^[a-z0-9-]+$'). The Instance ID also cannot be longer than 19 characters!
   #
   #   Example:
-  # instanceId: "cw-1"
+  # instanceId: "cw"
   #
-  instanceId: "cw-1"
+  instanceId: "cw"
 
   # NATS URL and PORT
   #   Description: Used to configure the application to talk
