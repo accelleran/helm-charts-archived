@@ -69,6 +69,10 @@ spec:
               mountPath: "{{ .Values.baseConfig.configDir }}/{{ .Values.baseConfig.l1.phluido.file }}"
               subPath: "{{ .Values.baseConfig.l1.phluido.file }}"
               readOnly: true
+            - name: {{ include "acc-common.fullname" . }}-du-nodeh
+              mountPath: "{{ .Values.baseConfig.configDir }}/{{ .Values.baseConfig.du.nodeh.file }}"
+              subPath: "{{ .Values.baseConfig.du.nodeh.file }}"
+              readOnly: true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- if or (.Values.nodeSelector) (eq (tpl .Values.draxNodeSelectorEnabled .) "true") }}
@@ -102,3 +106,6 @@ spec:
         - name: {{ include "acc-common.fullname" . }}-l1-phluido
           configMap:
             name: {{ include "acc-common.fullname" . }}-l1-phluido
+        - name: {{ include "acc-common.fullname" . }}-du-nodeh
+          configMap:
+            name: {{ include "acc-common.fullname" . }}-du-nodeh

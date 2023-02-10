@@ -6,6 +6,7 @@ global:
       - name: "du-1"
         install: |-
           <type>nodeh</type>
+          <base-config-file>/home/accelleran/5G/config/duNodeHConfig.json</base-config-file>
 
           <ssh-connection-details xc:operation="create">
             <host>127.0.0.1</host>
