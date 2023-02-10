@@ -1,0 +1,46 @@
+global:
+  # Documentation: https://accelleran.atlassian.net/wiki/spaces/GS/pages/2298183683/Configuration
+  config:
+    enabled: true
+    dus:
+      - name: "du-1"
+        install: |-
+          <type>nodeh</type>
+
+          <ssh-connection-details xc:operation="create">
+            <host>127.0.0.1</host>
+            <username>root</username>
+          </ssh-connection-details>
+
+          <http-connection-details xc:operation="create">
+            <host>127.0.0.1</host>
+          </http-connection-details>
+
+          <management-details xc:operation="create">
+            <server-address>127.0.0.1</server-address>
+          </management-details>
+        rus:
+        - name: "ru-1"
+          install: |-
+            <type>nodeh</type>
+
+            <ssh-connection-details xc:operation="create">
+              <host>127.0.0.1</host>
+              <username>root</username>
+            </ssh-connection-details>
+
+            <serial-number>test123</serial-number>
+            
+            <supported-frequency-band xc:operation="create">77</supported-frequency-band>
+
+            <location xc:operation="create">
+              <latitude>4422566</latitude>
+              <longitude>51213881</longitude>
+              <altitude>0</altitude>
+              <altitude-ref>msl-geoid</altitude-ref>
+            </location>
+
+            <antenna-gain>0</antenna-gain>
+
+            <maximum-power-capability>0</maximum-power-capability>
+            <minimum-power-capability>0</minimum-power-capability>
