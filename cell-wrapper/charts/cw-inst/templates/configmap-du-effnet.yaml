@@ -148,7 +148,7 @@ data:
               },
               "harq_processes_for_pdsch": 16,
               "minimum_k1_delay": 1,
-              "minimum_k2_delay": 3,
+              "minimum_k2_delay": 1,
               "force_rlc_buffer_size": 8388608,
               "default_paging_cycle": 128,
               "modification_period_coeff": 2
