@@ -15,7 +15,7 @@ data:
     maxNumPdschLayers = 2;
     maxNumPuschLayers = 1;
     numWorkers = 8;
-    targetRecvDelay_us = 2500;
+    targetRecvDelay_us = 2250;
     pucchFormat0Threshold = 0.01;
     timingOffsetThreshold_nsec = 10000;
     {{- end }}
