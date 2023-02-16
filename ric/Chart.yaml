@@ -95,3 +95,7 @@ dependencies:
     condition: config-api.enabled
     version: 0.1.0
     repository: https://accelleran.github.io/helm-charts/
+  - name: network-state-monitor
+    condition: network-state-monitor.enabled
+    version: 0.1.0
+    repository: https://accelleran.github.io/helm-charts/

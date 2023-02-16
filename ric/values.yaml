@@ -237,6 +237,10 @@ dash-front-back-end:
       - "accelleran.drax.4g.ric.raw.network_state"
       - "accelleran.drax.all.ric.processed.anr"
 
+network-state-monitor:
+  # Enable/disable installation of the Network State Monitor
+  enabled: true
+
 acc-service-monitor:
   # Enable/disable installation of the Service Monitor
   enabled: true
