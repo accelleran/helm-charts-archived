@@ -6,19 +6,19 @@
 
 # Release Notes ###############################
 
-## RIC 6.1.0
+## RIC 6.2.0-rc.0
 ### Added
-  - Added support for labelSelector in ServiceMonitor's /services API
-  - Added additional CU-CP/CU-UP PM Counters to Grafana
+  - Added DU/RU section to Dashboard
+  - Added DU/RU endpoints to RIC API
+  - Added Network State Monitor microservice
+  - Added Config API microservice
+  - Added support for forwarding Cell Wrapper messages to Kafka
 
 ### Changed
-  - Jaeger is now disabled by default
-  - All NG-C links added via Dashboard will be marked as the Default AMF (PRBSD-208)
-  - Additional error details are now displayed on the Dashboard if CU/xApp deployment fails (PRBSD-149)
+  - Changed the System Health page to display Kubernetes resources
 
 ### Fixed
-  - Fixed ServiceMonitor /services/netconf not returning CU Netconf services
-  - Fixed CU-CP and CU-UP being unlocked while Dashboard was still making additional changes (PRBSD-210)
+  - Fixed CUs being deployed with NATS/Redis IPs rather than Kubernetes Service names
 
 # Services #####################################
 {{ if index .Values "acc-kafka" "enabled" }}## Kafka
