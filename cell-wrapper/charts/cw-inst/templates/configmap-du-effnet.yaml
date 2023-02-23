@@ -158,3 +158,160 @@ data:
       }
     }
     {{- end }}
+  {{ .Values.baseConfig.du.effnet.kpiFile }}: |-
+    {{- if .Values.baseConfig.du.effnet.kpiData }}
+    {{- .Values.baseConfig.du.effnet.kpiData | nindent 4 }}
+    {{- else }}
+    {
+      "event_trigger_definition": {
+        "format1": {
+          "reporting_period": 10000
+        }
+      },
+      "ric_action_definition_list": [
+        {
+          "enabled": false,
+          "format1": {
+            "measurement_info_list": [
+              {
+                "name": "RRU.PrbTotDl"
+              }
+            ],
+            "granularity_period": 1000
+          }
+        },
+        {
+          "enabled": false,
+          "format1": {
+            "measurement_info_list": [
+              {
+                "name": "RRU.PrbTotUl"
+              }
+            ],
+            "granularity_period": 1000
+          }
+        },
+        {
+          "enabled": true,
+          "format1": {
+            "measurement_info_list": [
+              {
+                "name": "DRB.UEThpDl"
+              }
+            ],
+            "granularity_period": 1000
+          }
+        },
+        {
+          "enabled": true,
+          "format1": {
+            "measurement_info_list": [
+              {
+                "name": "DRB.UEThpUl"
+              }
+            ],
+            "granularity_period": 1000
+          }
+        },
+        {
+          "enabled": true,
+          "format1": {
+            "measurement_info_list": [
+              {
+                "name": "CARR.WBCQIDist"
+              }
+            ],
+            "granularity_period": 1000
+          }
+        },
+        {
+          "enabled": true,
+          "format1": {
+            "measurement_info_list": [
+              {
+                "name": "CARR.PDSCHMCSDist"
+              }
+            ],
+            "granularity_period": 1000
+          }
+        },
+        {
+          "enabled": true,
+          "format1": {
+            "measurement_info_list": [
+              {
+                "name": "CARR.PUSCHMCSDist"
+              }
+            ],
+            "granularity_period": 1000
+          }
+        },
+        {
+          "enabled": true,
+          "format1": {
+            "measurement_info_list": [
+              {
+                "name": "Effnet.CARR.PUSCHMCSDist"
+              }
+            ],
+            "granularity_period": 1000
+          }
+        },
+        {
+          "enabled": false,
+          "format1": {
+            "measurement_info_list": [
+              {
+                "name": "RACH.PreambleACell"
+              }
+            ],
+            "granularity_period": 1000
+          }
+        },
+        {
+          "enabled": true,
+          "format1": {
+            "measurement_info_list": [
+              {
+                "name": "DRB.MeanActiveUe"
+              }
+            ],
+            "granularity_period": 1000
+          }
+        },
+        {
+          "enabled": false,
+          "format1": {
+            "measurement_info_list": [
+              {
+                "name": "DlUeThroughput-Cell"
+              }
+            ],
+            "granularity_period": 1000
+          }
+        },
+        {
+          "enabled": true,
+          "format1": {
+            "measurement_info_list": [
+              {
+                "name": "Effnet.CARR.WBCQIDist.Ue"
+              }
+            ],
+            "granularity_period": 1000
+          }
+        },
+        {
+          "enabled": true,
+          "format1": {
+            "measurement_info_list": [
+              {
+                "name": "Effnet.L1M.ATADist.Ue"
+              }
+            ],
+            "granularity_period": 1000
+          }
+        }
+      ]
+    }
+    {{- end }}

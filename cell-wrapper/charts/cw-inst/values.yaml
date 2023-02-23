@@ -94,6 +94,8 @@ baseConfig:
     effnet:
       file: "duEffnetConfig.json"
       data: null
+      kpiFile: "duEffnetKpiConfig.json"
+      kpiData: null
   l1:
     phluido:
       file: "l1PhluidoConfig.cfg"
