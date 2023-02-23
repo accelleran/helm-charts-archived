@@ -61,6 +61,10 @@ spec:
               mountPath: "{{ .Values.baseConfig.configDir }}/{{ .Values.baseConfig.du.effnet.file }}"
               subPath: "{{ .Values.baseConfig.du.effnet.file }}"
               readOnly: true
+            - name: {{ include "acc-common.fullname" . }}-du-effnet
+              mountPath: "{{ .Values.baseConfig.configDir }}/{{ .Values.baseConfig.du.effnet.kpiFile }}"
+              subPath: "{{ .Values.baseConfig.du.effnet.kpiFile }}"
+              readOnly: true
             - name: {{ include "acc-common.fullname" . }}-l1-phluido
               mountPath: "{{ .Values.baseConfig.configDir }}/{{ .Values.baseConfig.l1.phluido.file }}"
               subPath: "{{ .Values.baseConfig.l1.phluido.file }}"
