@@ -18,10 +18,6 @@ global:
               <bbu-addr>10.10.0.1</bbu-addr>
             </phluido-l1-config>
           </l1>
-        internal: |-
-          <auto-repair xc:operation="create">
-            <enable>true</enable>
-          </auto-repair>
         rus:
         - name: "ru-1"
           install: |-
