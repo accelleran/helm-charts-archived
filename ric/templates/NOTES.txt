@@ -6,7 +6,7 @@
 
 # Release Notes ###############################
 
-## RIC 6.2.0-rc.0
+## RIC 6.2.0-rc.1
 ### Added
   - Added DU/RU section to Dashboard
   - Added DU/RU endpoints to RIC API
@@ -16,9 +16,12 @@
 
 ### Changed
   - Changed the System Health page to display Kubernetes resources
+  - Changed the CU-CP configuration Dashboard page to remove "operator" table
 
 ### Fixed
   - Fixed CUs being deployed with NATS/Redis IPs rather than Kubernetes Service names
+  - Fixed 5G System Dashboard not showing correct Pod counts
+  - Fixed CU RRC Connection counters with Emergency Cause not being counted
 
 # Services #####################################
 {{ if index .Values "acc-kafka" "enabled" }}## Kafka
