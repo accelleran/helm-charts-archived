@@ -67,7 +67,7 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: acc-fiveg-pmcounters
     condition: acc-fiveg-pmcounters.enabled
-    version: 1.0.2
+    version: 1.0.3
     repository: https://accelleran.github.io/helm-charts/
   - name: acc-5g-infrastructure
     condition: global.enable5G
