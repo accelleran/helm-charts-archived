@@ -22,8 +22,20 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      serviceAccountName: {{ include "acc-common.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      {{- if .Values.global.config.enabled }}
+      initContainers:
+        - name: {{ .Chart.Name }}-wait-for-netconf-init-config
+          image: ghcr.io/groundnuty/k8s-wait-for:v1.7 # k8s <v1.23
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args:
+            - "job"
+            - "{{ .Release.Name }}-netconf-init-config"
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
