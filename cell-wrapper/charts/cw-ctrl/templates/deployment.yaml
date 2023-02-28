@@ -27,7 +27,7 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- if .Values.global.config.enabled }}
       initContainers:
-        - name: {{ .Chart.Name }}-wait-for-netconf-init-config
+        - name: wait-for-netconf-init-config
           image: ghcr.io/groundnuty/k8s-wait-for:v1.7 # k8s <v1.23
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           args:
