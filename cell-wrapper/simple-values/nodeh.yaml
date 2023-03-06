@@ -12,14 +12,6 @@ global:
             <host>127.0.0.1</host>
             <username>root</username>
           </ssh-connection-details>
-
-          <http-connection-details xc:operation="create">
-            <host>127.0.0.1</host>
-          </http-connection-details>
-
-          <management-details xc:operation="create">
-            <server-address>127.0.0.1</server-address>
-          </management-details>
         rus:
         - name: "ru-1"
           install: |-
