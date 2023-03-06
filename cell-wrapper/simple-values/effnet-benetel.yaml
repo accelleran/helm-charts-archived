@@ -33,8 +33,8 @@ global:
             <supported-frequency-band xc:operation="create">77</supported-frequency-band>
 
             <location xc:operation="create">
-              <latitude>123</latitude>
-              <longitude>123</longitude>
+              <latitude>4422566</latitude>
+              <longitude>51213881</longitude>
               <altitude>0</altitude>
               <altitude-ref>msl-geoid</altitude-ref>
             </location>
