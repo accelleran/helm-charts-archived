@@ -91,3 +91,11 @@ dependencies:
     condition: ingress.enabled
     version: 0.1.0
     repository: https://accelleran.github.io/helm-charts/
+  - name: e2t
+    condition: addE2.enabled
+    version: 1.0.0-rc1
+    repository: https://accelleran.github.io/helm-charts/
+  - name: e2-sm-kpm
+    condition: addE2SM.enabled
+    version:  1.0.0-rc1
+    repository: https://accelleran.github.io/helm-charts/
