@@ -22,7 +22,7 @@ version: 2.0.0-rc.8
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "CW2.0.0-rc.11"
+appVersion: "CW2.0.0-rc.12"
 # THIS IS FOR DOCUMENTATION. REAL TAG CONTROL IN VALUES FILE!
 
 # Dependencies
