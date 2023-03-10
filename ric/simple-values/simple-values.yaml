@@ -40,3 +40,9 @@ acc-4g-infrastructure:
       netconfConfig:
         enabled: true
         deleteExistingConfig: false
+
+e2-sm-kpm:
+  enabled: false
+
+e2t:
+  enabled: false
