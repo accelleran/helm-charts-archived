@@ -46,3 +46,5 @@ e2-sm-kpm:
 
 e2t:
   enabled: false
+  e2t-ap:
+    numOfE2Nodes: "5"

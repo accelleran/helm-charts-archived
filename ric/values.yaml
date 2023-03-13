@@ -785,7 +785,7 @@ e2-sm-kpm:
     url: "{{ .Values.global.kubeIp }}"
     port: "31100"
 
-  bootstrapId: "e2-sm-kpm"
+  bootstrapId: "e2-t"
 
   jaegerAgentHost: "ric-jaeger-agent"
 

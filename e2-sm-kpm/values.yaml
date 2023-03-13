@@ -33,7 +33,7 @@ redisConfig:
   hostname: "10.55.1.2"
   port: "32200"
 
-bootstrapId: "e2-sm-kpm"
+bootstrapId: "e2-t"
 bootstrapFile: /bootstrap.txt
 
 jaegerAgentHost: "ric-jaeger-agent"
