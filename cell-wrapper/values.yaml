@@ -12,7 +12,7 @@ global:
   #                in DockerHub.
   #   Value type: string
   #
-  tag: "CW2.0.0-rc.12"
+  tag: "CW2.0.0"
 
   # CW Instance ID
   #   Description:  The Instance ID of the CW component that
