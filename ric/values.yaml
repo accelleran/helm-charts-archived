@@ -724,3 +724,34 @@ keycloak-ingress:
 
 e2t:
   enabled: false
+
+  natsHostname:  "{{ .Values.global.kubeIp }}"
+  natsPort: "31100" 
+
+  redisConfig:
+    hostname: "{{ .Values.global.kubeIp }}"
+    port: "32200"
+
+  tag: ""
+
+  bootstrapId: "e2-t"
+
+  jaegerAgentHost: "ric-jaeger-agent"
+
+  draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
+  draxNodeSelector:
+      draxName: "{{ .Values.global.draxName }}"
+
+  e2tsctp:
+    enabled: true      
+
+    sctpService:
+      nodePort: 31900
+
+  e2tap:
+    enabled: true
+
+    numOfE2Nodes: "5"
+
+  e2smkpm:
+    enabled: false

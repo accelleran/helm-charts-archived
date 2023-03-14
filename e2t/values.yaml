@@ -1,72 +1,66 @@
-global:
-  # Number of supported components
-  #   Description:  You have to specify the amount of different components that should be supported.
-  #                 Therefore, you have to specify:
-  #
-  numOfE2Nodes: 5
+# Bootstrap Instance ID
+#   Description:  The Bootstrap Instance ID. Is used by the logical group:
+#                 SCTP and all APs associated to that SCTP module.
+#
+#   Example:
+# bootstrapId: "e2-t"
+#
+bootstrapId: "e2-t"
 
-  # Bootstrap Instance ID
-  #   Description:  The Bootstrap Instance ID. Is used by the logical group:
-  #                 SCTP and all APs associated to that SCTP module.
-  #
-  #   Example:
-  # bootstrapId: "e2-t"
-  #
-  bootstrapId: "e2-t"
-
-  # NATS URL and PORT
-  #   Description: Used to configure the application to talk
-  #                to NATS
-  #   Value type: string
-  #
-  natsUrl: "10.55.1.2"
-  natsPort: "31100"
+# NATS URL and PORT
+#   Description: Used to configure the application to talk
+#                to NATS
+#   Value type: string
+#
+natsHostname: "10.55.1.2"
+natsPort: "31100"
 
 
-  # Version of the 5G applications
-  #   Description: This is the version of the 5G applications
-  #                in DockerHub.
-  #   Value type: string
-  #
-  tag: "master-c9d13a75"
+# Version of the 5G applications
+#   Description: This is the version of the 5G applications
+#                in DockerHub.
+#   Value type: string
+#
+tag: "master-c9d13a75"
 
 
-  # Redis settings
-  #   Description: Certain application need to be able to reach
-  #                Redis. Here we configure the Redis hostname
-  #                and port.
-  #   Value type: string
-  #   Example:
-  #
-  redisHostname: "10.55.1.2"
-  redisPort: "32200"
+# Redis settings
+#   Description: Certain application need to be able to reach
+#                Redis. Here we configure the Redis hostname
+#                and port.
+#   Value type: string
+#   Example:
+#
+redisConfig:
+  hostname: "10.55.1.2"
+  port: "32200"
 
 
-  # dRAX Specific Node Selector
-  #   Description: This is a special nodeSelector field implemented for the
-  #                Accelleran 5G Helm charts. You need to first label your
-  #                node in Kubernetes with a label "draxName" and give it a
-  #                <value>. For example for node <node_name>, you can use the
-  #                following command to label it:
-  #                kubectl label node <node_name> draxName=<value>.
-  #                You can then enabled this feature by setting
-  #                "draxNodeSelectorEnabled" to "true" (as a string with quotes!).
-  #                The in "draxName" set the value of the label you chose for
-  #                the node. This will in effect install all the 5G Application
-  #                on that node, without the need to edit all individual helm
-  #                charts. In case you want to add other nodeSelector options,
-  #                you have to add them to the helm chart specific values files.
-  #   Value type: string
-  #   Example:
-  #
-  draxNodeSelectorEnabled: "false"
-  draxName: "main"
+# dRAX Specific Node Selector
+#   Description: This is a special nodeSelector field implemented for the
+#                Accelleran 5G Helm charts. You need to first label your
+#                node in Kubernetes with a label "draxName" and give it a
+#                <value>. For example for node <node_name>, you can use the
+#                following command to label it:
+#                kubectl label node <node_name> draxName=<value>.
+#                You can then enabled this feature by setting
+#                "draxNodeSelectorEnabled" to "true" (as a string with quotes!).
+#                The in "draxName" set the value of the label you chose for
+#                the node. This will in effect install all the 5G Application
+#                on that node, without the need to edit all individual helm
+#                charts. In case you want to add other nodeSelector options,
+#                you have to add them to the helm chart specific values files.
+#   Value type: string
+#   Example:
+#
+draxNodeSelectorEnabled: "false"
+draxName: "main"
 
-  # Jaeger settings
-  #   Description:  Sets the DNS hostname where the Jaeger agent is located
-  #   Value type:   string
-  #   Example: jaegerAgentHost: "ric-jaeger-agent"
-  jaegerAgentHost: "ric-jaeger-agent"
+# Jaeger settings
+#   Description:  Sets the DNS hostname where the Jaeger agent is located
+#   Value type:   string
+#   Example: jaegerAgentHost: "ric-jaeger-agent"
+jaegerAgentHost: "ric-jaeger-agent"
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -76,6 +70,8 @@ serviceAccount:
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
+nameOverride: ""
+fullnameOverride: ""
 
 e2tsctp:
 
@@ -87,12 +83,10 @@ e2tsctp:
     repository: accelleran/e2sctpappl
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "{{ .Values.global.tag }}"
+    tag: ""
 
   imagePullSecrets:
     - name: accelleran-secret
-  nameOverride: ""
-  fullnameOverride: ""
 
   # Application Settings
   # cmd: "__APPNAME=amfController ./amfControllerAppl.exe"
@@ -103,19 +97,8 @@ e2tsctp:
   #    value: 127.0.0.1
   #  - name: "--ng"
   #    value: 127.0.0.5
-
-  nats:
-    url: "{{ .Values.global.natsUrl }}"
-    port: "{{ .Values.global.natsPort }}"
-
-  redisConfig:
-    hostname: "{{ .Values.global.redisHostname }}"
-    port: "{{ .Values.global.redisPort }}"
-
-  bootstrapId: "{{ .Values.global.bootstrapId }}"
+  
   bootstrapFile: /home/accelleran/5G/bootstrap.txt
-
-  jaegerAgentHost:  "{{ .Values.global.jaegerAgentHost }}"
 
   extraEnvs: []
   #  - name: __APPNAME
@@ -140,7 +123,7 @@ e2tsctp:
   sctpService:
     enabled: true
     name: "e2-sctp"
-    type: NodePort
+    type:  LoadBalancer
     protocol: SCTP
     port: 38482
     # loadBalancerIP:
@@ -181,11 +164,6 @@ e2tsctp:
 
   nodeSelector: {}
 
-  draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
-
-  draxNodeSelector:
-    draxName: "{{ .Values.global.draxName }}"
-
   tolerations: []
 
   affinity: {}
@@ -197,18 +175,16 @@ e2tsctp:
 e2tap:
   enabled: true
 
-  numOfE2Nodes: "{{ .Values.global.numOfE2Nodes }}"
+  numOfE2Nodes: "5"
 
   image:
     repository: accelleran/e2apintfappl
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "{{ .Values.global.tag }}"
+    tag: ""
 
   imagePullSecrets:
     - name: accelleran-secret
-  nameOverride: ""
-  fullnameOverride: ""
 
   # Application Settings
   # cmd: "__APPNAME=amfController ./amfControllerAppl.exe"
@@ -220,18 +196,7 @@ e2tap:
   #  - name: "--ng"
   #    value: 127.0.0.5
 
-  nats:
-    url: "{{ .Values.global.natsUrl }}"
-    port: "{{ .Values.global.natsPort }}"
-
-  redisConfig:
-    hostname: "{{ .Values.global.redisHostname }}"
-    port: "{{ .Values.global.redisPort }}"
-
-  bootstrapId: "{{ .Values.global.bootstrapId }}"
   bootstrapFile: /home/accelleran/5G/bootstrap.txt
-
-  jaegerAgentHost:  "{{ .Values.global.jaegerAgentHost }}"
 
   extraEnvs: []
   #  - name: __APPNAME
@@ -295,11 +260,6 @@ e2tap:
 
   nodeSelector: {}
 
-  draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
-
-  draxNodeSelector:
-    draxName: "{{ .Values.global.draxName }}"
-
   tolerations: []
 
   affinity: {}
@@ -316,12 +276,10 @@ e2smkpm:
     repository: accelleran/e2smkpmappl
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "{{ .Values.global.tag }}"
+    tag: ""
 
   imagePullSecrets:
     - name: accelleran-secret
-  nameOverride: ""
-  fullnameOverride: ""
 
   # Application Settings
   # cmd: "__APPNAME=amfController ./amfControllerAppl.exe"
@@ -333,18 +291,7 @@ e2smkpm:
   #  - name: "--ng"
   #    value: 127.0.0.5
 
-  nats:
-    url: "{{ .Values.global.natsUrl }}"
-    port: "{{ .Values.global.natsPort }}"
-
-  redisConfig:
-    hostname: "{{ .Values.global.redisHostname }}"
-    port: "{{ .Values.global.redisPort }}"
-
-  bootstrapId: "e2-sm-kpm"
   bootstrapFile: /bootstrap.txt
-
-  jaegerAgentHost:  "{{ .Values.global.jaegerAgentHost }}"
 
   extraEnvs:
     - name: __APPNAME
@@ -368,7 +315,7 @@ e2smkpm:
 
   service:
     enabled: false
-    name: "e2-sm-kpm"
+    name: "e2-kpm-sm"
     type: NodePort
     protocol: SCTP
     port: 80
@@ -409,11 +356,6 @@ e2smkpm:
     # targetMemoryUtilizationPercentage: 80
 
   nodeSelector: {}
-
-  draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
-
-  draxNodeSelector:
-    draxName: "{{ .Values.global.draxName }}"
 
   tolerations: []
 
