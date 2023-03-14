@@ -21,14 +21,3 @@ version: 1.0.0-rc1
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 appVersion: "master-c9d13a75"
-
-# Dependencies
-dependencies:
-  - name: e2t-sctp
-    condition: e2t-sctp.enabled
-    version: 1.0.0
-    repository: https://accelleran.github.io/helm-charts/
-  - name: e2t-ap
-    condition: e2t-ap.enabled
-    version: 1.0.0
-    repository: https://accelleran.github.io/helm-charts/

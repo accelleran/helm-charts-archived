@@ -68,61 +68,357 @@ global:
   #   Example: jaegerAgentHost: "ric-jaeger-agent"
   jaegerAgentHost: "ric-jaeger-agent"
 
-e2t-sctp:
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+e2tsctp:
+
   enabled: true
 
+  replica: 1
+
   image:
+    repository: accelleran/e2sctpappl
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
     tag: "{{ .Values.global.tag }}"
 
-  redisConfig:
-    hostname: "{{ .Values.global.redisHostname }}"
-    port: "{{ .Values.global.redisPort }}"
+  imagePullSecrets:
+    - name: accelleran-secret
+  nameOverride: ""
+  fullnameOverride: ""
+
+  # Application Settings
+  # cmd: "__APPNAME=amfController ./amfControllerAppl.exe"
+  cmd: "./sctpE2apAppl.exe"
+
+  args: []
+  #  - name: "--own"
+  #    value: 127.0.0.1
+  #  - name: "--ng"
+  #    value: 127.0.0.5
 
   nats:
     url: "{{ .Values.global.natsUrl }}"
     port: "{{ .Values.global.natsPort }}"
 
-  bootstrapId: "{{ .Values.global.bootstrapId }}"
+  redisConfig:
+    hostname: "{{ .Values.global.redisHostname }}"
+    port: "{{ .Values.global.redisPort }}"
 
-  jaegerAgentHost: "{{ .Values.global.jaegerAgentHost }}"
+  bootstrapId: "{{ .Values.global.bootstrapId }}"
+  bootstrapFile: /home/accelleran/5G/bootstrap.txt
+
+  jaegerAgentHost:  "{{ .Values.global.jaegerAgentHost }}"
+
+  extraEnvs: []
+  #  - name: __APPNAME
+  #    value: sctpE2ap
+  #  - name: ex1
+  #    value: ex1
+
+  podAnnotations: {}
+
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  securityContext: 
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    runAsUser: 0
+    privileged: true
 
   sctpService:
+    enabled: true
+    name: "e2-sctp"
+    type: NodePort
+    protocol: SCTP
+    port: 38482
+    # loadBalancerIP:
     nodePort: 31900
+    # externalTrafficPolicy: "Local"
+
+  ingress:
+    enabled: false
+    annotations: {}
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: chart-example.local
+        paths: []
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+
+  nodeSelector: {}
 
   draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
+
   draxNodeSelector:
     draxName: "{{ .Values.global.draxName }}"
 
-  ### TODO REMOVE
+  tolerations: []
+
+  affinity: {}
+
   developerMode:
     enabled: false
     hostPath: ""
 
-e2t-ap:
+e2tap:
   enabled: true
 
   numOfE2Nodes: "{{ .Values.global.numOfE2Nodes }}"
 
   image:
+    repository: accelleran/e2apintfappl
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
     tag: "{{ .Values.global.tag }}"
 
-  redisConfig:
-    hostname: "{{ .Values.global.redisHostname }}"
-    port: "{{ .Values.global.redisPort }}"
+  imagePullSecrets:
+    - name: accelleran-secret
+  nameOverride: ""
+  fullnameOverride: ""
+
+  # Application Settings
+  # cmd: "__APPNAME=amfController ./amfControllerAppl.exe"
+  cmd: "./e2ApAppl.exe"
+
+  args: []
+  #  - name: "--own"
+  #    value: 127.0.0.1
+  #  - name: "--ng"
+  #    value: 127.0.0.5
 
   nats:
     url: "{{ .Values.global.natsUrl }}"
     port: "{{ .Values.global.natsPort }}"
 
-  bootstrapId: "{{ .Values.global.bootstrapId }}"
+  redisConfig:
+    hostname: "{{ .Values.global.redisHostname }}"
+    port: "{{ .Values.global.redisPort }}"
 
-  jaegerAgentHost: "{{ .Values.global.jaegerAgentHost }}"
+  bootstrapId: "{{ .Values.global.bootstrapId }}"
+  bootstrapFile: /home/accelleran/5G/bootstrap.txt
+
+  jaegerAgentHost:  "{{ .Values.global.jaegerAgentHost }}"
+
+  extraEnvs: []
+  #  - name: __APPNAME
+  #    value: e2Ap
+
+  podAnnotations: {}
+
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  securityContext: 
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    runAsUser: 0
+    privileged: true
+
+  service:
+    enabled: false
+    name: "e2-service"
+    type: NodePort
+    protocol: SCTP
+    port: 80
+    # loadBalancerIP:
+    # nodePort:
+    # externalTrafficPolicy: "Local"
+
+  ingress:
+    enabled: false
+    annotations: {}
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: chart-example.local
+        paths: []
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+
+  nodeSelector: {}
 
   draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
+
   draxNodeSelector:
     draxName: "{{ .Values.global.draxName }}"
 
-  ### TODO REMOVE
+  tolerations: []
+
+  affinity: {}
+
+  developerMode:
+    enabled: false
+    hostPath: ""
+
+e2smkpm:
+
+  replicas: 1
+
+  image:
+    repository: accelleran/e2smkpmappl
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: "{{ .Values.global.tag }}"
+
+  imagePullSecrets:
+    - name: accelleran-secret
+  nameOverride: ""
+  fullnameOverride: ""
+
+  # Application Settings
+  # cmd: "__APPNAME=amfController ./amfControllerAppl.exe"
+  cmd: "./e2SmKpmAppl.exe"
+
+  args: []
+  #  - name: "--own"
+  #    value: 127.0.0.1
+  #  - name: "--ng"
+  #    value: 127.0.0.5
+
+  nats:
+    url: "{{ .Values.global.natsUrl }}"
+    port: "{{ .Values.global.natsPort }}"
+
+  redisConfig:
+    hostname: "{{ .Values.global.redisHostname }}"
+    port: "{{ .Values.global.redisPort }}"
+
+  bootstrapId: "e2-sm-kpm"
+  bootstrapFile: /bootstrap.txt
+
+  jaegerAgentHost:  "{{ .Values.global.jaegerAgentHost }}"
+
+  extraEnvs:
+    - name: __APPNAME
+      value: e2SmKpm
+  #  - name: ex1
+  #    value: ex1
+
+  podAnnotations: {}
+
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  securityContext: 
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    runAsUser: 0
+    privileged: true
+
+  service:
+    enabled: false
+    name: "e2-sm-kpm"
+    type: NodePort
+    protocol: SCTP
+    port: 80
+    # loadBalancerIP:
+    # nodePort:
+    # externalTrafficPolicy: "Local"
+
+  ingress:
+    enabled: false
+    annotations: {}
+      # kubernetes.io/ingress.class: nginx
+      # kubernetes.io/tls-acme: "true"
+    hosts:
+      - host: chart-example.local
+        paths: []
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+
+  resources: {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+
+  nodeSelector: {}
+
+  draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
+
+  draxNodeSelector:
+    draxName: "{{ .Values.global.draxName }}"
+
+  tolerations: []
+
+  affinity: {}
+
   developerMode:
     enabled: false
     hostPath: ""

@@ -1,0 +1,28 @@
+{{- if .Values.e2smkpm.autoscaling.enabled }}
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "five-g-appl.fullname" . }}
+  labels:
+    {{- include "five-g-appl.labels" . | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: {{ include "five-g-appl.fullname" . }}
+  minReplicas: {{ .Values.e2smkpm.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.e2smkpm.autoscaling.maxReplicas }}
+  metrics:
+  {{- if .Values.e2smkpm.autoscaling.targetCPUUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: cpu
+        targetAverageUtilization: {{ .Values.e2smkpm.autoscaling.targetCPUUtilizationPercentage }}
+  {{- end }}
+  {{- if .Values.e2smkpm.autoscaling.targetMemoryUtilizationPercentage }}
+    - type: Resource
+      resource:
+        name: memory
+        targetAverageUtilization: {{ .Values.e2smkpm.autoscaling.targetMemoryUtilizationPercentage }}
+  {{- end }}
+{{- end }}

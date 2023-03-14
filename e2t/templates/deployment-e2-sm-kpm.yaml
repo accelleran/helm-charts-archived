@@ -1,39 +1,39 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "five-g-appl.fullname" . }}
+  name: {{ include "five-g-appl.fullname" . }}-sm-kpm
   labels:
     {{- include "five-g-appl.labels" . | nindent 4 }}
 spec:
-{{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicas }}
+{{- if not .Values.e2smkpm.autoscaling.enabled }}
+  replicas: {{ .Values.e2smkpm.replicas }}
 {{- end }}
   selector:
     matchLabels:
       {{- include "five-g-appl.selectorLabels" . | nindent 6 }}
   template:
     metadata:
-    {{- with .Values.podAnnotations }}
+    {{- with .Values.e2smkpm.podAnnotations }}
       annotations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
         {{- include "five-g-appl.labels" . | nindent 8 }}
     spec:
-      {{- with .Values.imagePullSecrets }}
+      {{- with .Values.e2smkpm.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       serviceAccountName: {{ include "five-g-appl.serviceAccountName" . }}
       securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+        {{- toYaml .Values.e2smkpm.podSecurityContext | nindent 8 }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ tpl .Values.image.tag . | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{ if .Values.developerMode.enabled }}
+            {{- toYaml .Values.e2smkpm.securityContext | nindent 12 }}
+          image: "{{ .Values.e2smkpm.image.repository }}:{{ tpl .Values.e2smkpm.image.tag . | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.e2smkpm.image.pullPolicy }}
+          {{ if .Values.e2smkpm.developerMode.enabled }}
           command:
             - sh
             - "-c"
@@ -47,25 +47,25 @@ spec:
             - "-c"
             - |
               /bin/sh <<'EOF'
-              {{ .Values.cmd }} {{- if .Values.args }}{{ range .Values.args }} {{ .name }} {{ .value }}{{ end }}{{- end }}
+              {{ .Values.e2smkpm.cmd }} {{- if .Values.e2smkpm.args }}{{ range .Values.e2smkpm.args }} {{ .name }} {{ .value }}{{ end }}{{- end }}
               EOF
           {{ end }}
           env:
             - name: NATS_SERVICE_URL
-              value: nats://{{ tpl .Values.nats.url . }}:{{ tpl .Values.nats.port . }}
+              value: nats://{{ tpl .Values.e2smkpm.nats.url . }}:{{ tpl .Values.e2smkpm.nats.port . }}
             - name: ZLOG_CONF_PATH
               value: /zlog.conf
             - name: BOOTSTRAP_FILENAME
-              value: {{ .Values.bootstrapFile }}
+              value: {{ .Values.e2smkpm.bootstrapFile }}
             - name: JAEGER_AGENT_HOST
-              value: {{ tpl .Values.jaegerAgentHost . }}
-            {{- if .Values.extraEnvs }}
-            {{ toYaml .Values.extraEnvs | nindent 12 }}
+              value: {{ tpl .Values.e2smkpm.jaegerAgentHost . }}
+            {{- if .Values.e2smkpm.extraEnvs }}
+            {{ toYaml .Values.e2smkpm.extraEnvs | nindent 12 }}
             {{- end }}
 #          ports:
-#            - name: {{ tpl .Values.service.name . }}
-#              containerPort: {{ .Values.service.port}}
-#              protocol: {{ .Values.service.protocol }}
+#            - name: {{ tpl .Values.e2smkpm.service.name . }}
+#              containerPort: {{ .Values.e2smkpm.service.port}}
+#              protocol: {{ .Values.e2smkpm.service.protocol }}
 #          livenessProbe:
 #            httpGet:
 #              path: /
@@ -79,32 +79,32 @@ spec:
               mountPath: /zlog.conf
               subPath: "zlog.conf"
             - name: {{ include "five-g-appl.fullname" . }}-bootstrap
-              mountPath: {{ .Values.bootstrapFile }}
+              mountPath: {{ .Values.e2smkpm.bootstrapFile }}
               subPath: "bootstrap.txt"
-            {{ if and (.Values.developerMode.enabled) (.Values.developerMode.hostPath) }}
+            {{ if and (.Values.e2smkpm.developerMode.enabled) (.Values.e2smkpm.developerMode.hostPath) }}
             - name: dev-work-dir
               mountPath: /home/accelleran/5G/dev/
             {{ end }}
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.e2smkpm.resources | nindent 12 }}
           lifecycle:
             preStop:
               exec:
-                command: [ '/bin/sh', '-c', 'pkill -15 -e {{ .Values.cmd | trimPrefix "./" | trimSuffix ".exe" | trunc 15  }}' ]
-      {{- if or (.Values.nodeSelector) (eq (tpl .Values.draxNodeSelectorEnabled .) "true") }}
+                command: [ '/bin/sh', '-c', 'pkill -15 -e {{ .Values.e2smkpm.cmd | trimPrefix "./" | trimSuffix ".exe" | trunc 15  }}' ]
+      {{- if or (.Values.e2smkpm.nodeSelector) (eq (tpl .Values.e2smkpm.draxNodeSelectorEnabled .) "true") }}
       nodeSelector:
-        {{ if .Values.nodeSelector }}
-          {{- toYaml .Values.nodeSelector | nindent 8 }}
+        {{ if .Values.e2smkpm.nodeSelector }}
+          {{- toYaml .Values.e2smkpm.nodeSelector | nindent 8 }}
         {{ end }}
-        {{ if eq (tpl .Values.draxNodeSelectorEnabled .) "true" }}
-          {{- tpl (toYaml .Values.draxNodeSelector) $ | nindent 8 }}
+        {{ if eq (tpl .Values.e2smkpm.draxNodeSelectorEnabled .) "true" }}
+          {{- tpl (toYaml .Values.e2smkpm.draxNodeSelector) $ | nindent 8 }}
         {{ end }}
       {{- end }}
-      {{- with .Values.affinity }}
+      {{- with .Values.e2smkpm.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- with .Values.tolerations }}
+      {{- with .Values.e2smkpm.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -117,8 +117,8 @@ spec:
           configMap:
             name: {{ include "five-g-appl.fullname" . }}-bootstrap
 
-        {{ if and (.Values.developerMode.enabled) (.Values.developerMode.hostPath) }}
+        {{ if and (.Values.e2smkpm.developerMode.enabled) (.Values.e2smkpm.developerMode.hostPath) }}
         - name: dev-work-dir
           hostPath:
-            path: {{ .Values.developerMode.hostPath }}
+            path: {{ .Values.e2smkpm.developerMode.hostPath }}
         {{ end }}

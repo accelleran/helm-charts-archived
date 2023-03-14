@@ -1,6 +1,6 @@
-{{- if .Values.ingress.enabled -}}
+{{- if .Values.e2tsctp.ingress.enabled -}}
 {{- $fullName := include "five-g-appl.fullname" . -}}
-{{- $svcPort := .Values.service.port -}}
+{{- $svcPort := .Values.e2tsctp.service.port -}}
 {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
 {{- else -}}
@@ -11,14 +11,14 @@ metadata:
   name: {{ $fullName }}
   labels:
     {{- include "five-g-appl.labels" . | nindent 4 }}
-  {{- with .Values.ingress.annotations }}
+  {{- with .Values.e2tsctp.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  {{- if .Values.ingress.tls }}
+  {{- if .Values.e2tsctp.ingress.tls }}
   tls:
-    {{- range .Values.ingress.tls }}
+    {{- range .Values.e2tsctp.ingress.tls }}
     - hosts:
         {{- range .hosts }}
         - {{ . | quote }}
@@ -27,7 +27,7 @@ spec:
     {{- end }}
   {{- end }}
   rules:
-    {{- range .Values.ingress.hosts }}
+    {{- range .Values.e2tsctp.ingress.hosts }}
     - host: {{ .host | quote }}
       http:
         paths:

@@ -1,0 +1,26 @@
+{{- if .Values.e2tsctp.sctpService.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "five-g-appl.fullname" . }}-sctp
+  labels:
+    {{- include "five-g-appl.labels" . | nindent 4 }}
+    drax/service-name: {{ tpl .Values.e2tsctp.sctpService.name . }}
+spec:
+  type: {{ .Values.e2tsctp.sctpService.type }}
+  {{ if .Values.e2tsctp.sctpService.externalTrafficPolicy }}
+  externalTrafficPolicy: {{ tpl .Values.e2tsctp.sctpService.externalTrafficPolicy . }}
+  {{ end }}
+  ports:
+    - port: {{ .Values.e2tsctp.sctpService.port}}
+      protocol: {{ .Values.e2tsctp.sctpService.protocol }}
+      name: {{ tpl .Values.e2tsctp.sctpService.name . }}
+      {{ if contains "NodePort" .Values.e2tsctp.sctpService.type }}
+      nodePort: {{ .Values.e2tsctp.sctpService.nodePort }}
+      {{ end }}
+  {{ if .Values.e2tsctp.sctpService.loadBalancerIP }}
+  loadBalancerIP: {{ tpl .Values.e2tsctp.sctpService.loadBalancerIP . }}
+  {{ end }}
+  selector:
+    {{- include "five-g-appl.selectorLabels" . | nindent 4 }}
+{{- end -}}

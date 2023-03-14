@@ -95,7 +95,3 @@ dependencies:
     condition: e2t.enabled
     version: 1.0.0-rc1
     repository: https://accelleran.github.io/helm-charts/
-  - name: e2-sm-kpm
-    condition: e2-sm-kpm.enabled
-    version:  1.0.0-rc1
-    repository: https://accelleran.github.io/helm-charts/

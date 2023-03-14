@@ -19,8 +19,8 @@
 
 # Services ####################################
 
-{{ if index .Values "e2t-sctp" "enabled" }}## E2 Termination SCTP
-Node Port: {{ index .Values "e2t-sctp" "sctpService" "nodePort" }} {{ end }}
+{{ if index .Values "e2tsctp" "enabled" }}## E2 Termination SCTP
+Node Port: {{ index .Values "e2tsctp" "sctpService" "nodePort" }} {{ end }}
 
 # Info #######################################
 
