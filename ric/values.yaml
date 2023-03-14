@@ -724,3 +724,71 @@ keycloak-ingress:
 
 e2t:
   enabled: false
+
+  e2t-sctp:
+    enabled: true
+
+    image:
+      tag: "master-c9d13a75"
+
+    redisConfig:
+      hostname: "{{ .Values.global.kubeIp }}"
+      port: "32200"
+
+    nats:
+      url: "{{ .Values.global.kubeIp }}"
+      port: "31100"
+
+    bootstrapId: "e2-t"
+
+    jaegerAgentHost: "ric-jaeger-agent"
+
+    sctpService:
+      nodePort: 31900
+
+    draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
+    draxNodeSelector:
+      draxName: "{{ .Values.global.draxName }}"
+
+  e2t-ap:
+    enabled: true
+
+    numOfE2Nodes: "5"
+
+    image:
+      tag: "master-c9d13a75"
+
+    redisConfig:
+      hostname: "{{ .Values.global.kubeIp }}"
+      port: "32200"
+
+    nats:
+      url: "{{ .Values.global.kubeIp }}"
+      port: "31100"
+
+    bootstrapId: "e2-t"
+
+    jaegerAgentHost: "ric-jaeger-agent"
+
+    draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
+    draxNodeSelector:
+      draxName: "{{ .Values.global.draxName }}"
+
+  e2-sm-kpm:
+    enabled: false
+
+    redisConfig:
+      hostname: "{{ .Values.global.kubeIp }}"
+      port: "32200"
+
+    nats:
+      url: "{{ .Values.global.kubeIp }}"
+      port: "31100"
+
+    bootstrapId: "e2-t"
+
+    jaegerAgentHost: "ric-jaeger-agent"
+
+    draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
+    draxNodeSelector:
+      draxName: "{{ .Values.global.draxName }}"

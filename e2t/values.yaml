@@ -368,7 +368,7 @@ e2smkpm:
 
   service:
     enabled: false
-    name: "e2-sm-kpm"
+    name: "{{ .Values.global.bootstrapId }}"
     type: NodePort
     protocol: SCTP
     port: 80

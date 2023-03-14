@@ -41,8 +41,7 @@ acc-4g-infrastructure:
         enabled: true
         deleteExistingConfig: false
 
-e2-sm-kpm:
-  enabled: false
-
 e2t:
   enabled: false
+  e2t-ap:
+    numOfE2Nodes: "5"
