@@ -28,7 +28,7 @@ global:
               <username>root</username>
             </ssh-connection-details>
 
-            <serial-number>test123</serial-number>
+            <serial-number>unknown</serial-number>
             
             <supported-frequency-band xc:operation="create">77</supported-frequency-band>
 
