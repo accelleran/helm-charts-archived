@@ -140,7 +140,7 @@ e2tsctp:
   sctpService:
     enabled: true
     name: "e2-sctp"
-    type: NodePort
+    type:  LoadBalancer
     protocol: SCTP
     port: 38482
     # loadBalancerIP:
