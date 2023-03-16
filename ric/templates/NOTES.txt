@@ -6,7 +6,7 @@
 
 # Release Notes ###############################
 
-## RIC 6.2.0-rc.1
+## RIC 6.2.0
 ### Added
   - Added DU/RU section to Dashboard
   - Added DU/RU endpoints to RIC API
