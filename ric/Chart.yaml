@@ -14,11 +14,11 @@ type: application
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 6.1.0
+version: 6.2.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
-appVersion: 6.1.0
+appVersion: 6.2.0
 
 # Dependencies
 dependencies:
@@ -32,11 +32,11 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: acc-sys-dashboard
     condition: acc-sys-dashboard.enabled
-    version: 3.4.13
+    version: 3.4.14
     repository: https://accelleran.github.io/helm-charts/
   - name: dash-front-back-end
     condition: dash-front-back-end.enabled
-    version: 4.2.1
+    version: 4.3.1
     repository: https://accelleran.github.io/helm-charts/
   - name: loki-stack
     version: 0.43.0
@@ -67,7 +67,7 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: acc-fiveg-pmcounters
     condition: acc-fiveg-pmcounters.enabled
-    version: 1.0.2
+    version: 1.0.3
     repository: https://accelleran.github.io/helm-charts/
   - name: acc-5g-infrastructure
     condition: global.enable5G
@@ -89,5 +89,13 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: keycloak-ingress
     condition: ingress.enabled
+    version: 0.1.0
+    repository: https://accelleran.github.io/helm-charts/
+  - name: config-api
+    condition: config-api.enabled
+    version: 0.1.2
+    repository: https://accelleran.github.io/helm-charts/
+  - name: network-state-monitor
+    condition: network-state-monitor.enabled
     version: 0.1.0
     repository: https://accelleran.github.io/helm-charts/

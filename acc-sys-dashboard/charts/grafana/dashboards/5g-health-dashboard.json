@@ -15,7 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1642427500204,
+  "id": 2,
+  "iteration": 1676973594759,
   "links": [],
   "panels": [
     {
@@ -1129,7 +1130,7 @@
       "pluginVersion": "7.3.7",
       "targets": [
         {
-          "expr": "sum(kube_pod_container_status_running{pod=~\".*sctp.*\",container=\"sctp\"}) or kube_pod_container_status_running{pod=~\"kube-apiserver-.*\"}-1",
+          "expr": "sum(kube_pod_container_status_running{pod=~\".*sctp.*\",container=\"sctp-e1\"}) or kube_pod_container_status_running{pod=~\"kube-apiserver-.*\"}-1",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1193,7 +1194,7 @@
       "pluginVersion": "7.3.7",
       "targets": [
         {
-          "expr": "sum(kube_pod_container_status_running{pod=~\".*cu-up.*\", container=\"e1-sctp-up\"}) or kube_pod_container_status_running{pod=~\"kube-apiserver-.*\"}-1",
+          "expr": "sum(kube_pod_container_status_running{pod=~\".*cuup.*\", container=\"e1-sctp-up\"}) or kube_pod_container_status_running{pod=~\"kube-apiserver-.*\"}-1",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1586,7 +1587,7 @@
       "pluginVersion": "7.3.7",
       "targets": [
         {
-          "expr": "sum(kube_pod_container_status_running{pod=~\".*cu-up.*\",container=~\"cu-up-+[0-9]*\"}) or kube_pod_container_status_running{pod=~\"kube-apiserver-.*\"}-1",
+          "expr": "sum(kube_pod_container_status_running{pod=~\".*ups.*\",container=~\".*ups.*\"}) or kube_pod_container_status_running{pod=~\"kube-apiserver-.*\"}-1",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -1853,10 +1854,11 @@
       "pluginVersion": "7.3.7",
       "targets": [
         {
-          "expr": "(kube_pod_container_status_running{pod=~\".*-nkafka-5g.*\"} or kube_pod_container_status_running{pod=~\"kube-apiserver-.*\"}-1)",
+          "expr": "(kube_pod_container_status_running{pod=~\".*nkafka.*\"} or kube_pod_container_status_running{pod=~\"kube-apiserver-.*\"}-1)",
           "format": "table",
           "hide": false,
           "instant": true,
+          "interval": "",
           "legendFormat": "",
           "refId": "B"
         }
@@ -2853,7 +2855,7 @@
       "pluginVersion": "7.3.7",
       "targets": [
         {
-          "expr": "sum(kube_pod_container_status_running{pod=~\".*sctp.*\",container=\"sctp\"}) or kube_pod_container_status_running{pod=~\"kube-apiserver-.*\"}-1",
+          "expr": "sum(kube_pod_container_status_running{pod=~\".*sctp.*\",container=~\".*sctp.*\"}) or kube_pod_container_status_running{pod=~\"kube-apiserver-.*\"}-1",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -2950,7 +2952,7 @@
       "pluginVersion": "7.3.7",
       "targets": [
         {
-          "expr": "sum(kube_pod_container_status_running{pod=~\".*cu-up.*\", container=~\"cu-up-+[0-9]*\"}) or kube_pod_container_status_running{pod=~\"kube-apiserver-.*\"}-1",
+          "expr": "sum(kube_pod_container_status_running{pod=~\".*cuup.*\", container=~\"pm-controller-up*\"}) or kube_pod_container_status_running{pod=~\"kube-apiserver-.*\"}-1",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -3474,7 +3476,7 @@
             "h": 7,
             "w": 9,
             "x": 0,
-            "y": 12
+            "y": 36
           },
           "id": 41,
           "options": {
@@ -3553,7 +3555,7 @@
             "h": 7,
             "w": 15,
             "x": 9,
-            "y": 12
+            "y": 36
           },
           "hiddenSeries": false,
           "id": 47,
@@ -3712,7 +3714,7 @@
             "h": 8,
             "w": 12,
             "x": 0,
-            "y": 13
+            "y": 44
           },
           "hiddenSeries": false,
           "id": 59,
@@ -3827,7 +3829,7 @@
             "h": 8,
             "w": 12,
             "x": 12,
-            "y": 13
+            "y": 44
           },
           "hiddenSeries": false,
           "id": 60,
@@ -3942,7 +3944,7 @@
       "type": "row"
     }
   ],
-  "refresh": "",
+  "refresh": false,
   "schemaVersion": 26,
   "style": "dark",
   "tags": [],
@@ -4097,5 +4099,5 @@
   "timezone": "",
   "title": "Accelleran dRAX 5G System Dashboard",
   "uid": "786sGw2Mk",
-  "version": 9
+  "version": 1
 }
