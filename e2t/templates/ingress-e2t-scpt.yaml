@@ -10,7 +10,16 @@ kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "five-g-appl.labels" . | nindent 4 }}
+    helm.sh/chart: {{ include "five-g-appl.chart" . }}
+    app.kubernetes.io/name: {{ include "five-g-appl.name" . }}-sctp
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    drax/role: e2
+    drax/name: e2t
+    drax/component-name: {{ .Chart.Name }}-sctp
+    drax/component-version: {{ .Chart.Version }}
+    drax/instanceId: "{{ tpl .Values.e2tsctp.bootstrapId . }}"
   {{- with .Values.e2tsctp.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

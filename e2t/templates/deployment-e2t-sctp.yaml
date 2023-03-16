@@ -3,14 +3,24 @@ kind: Deployment
 metadata:
   name: {{ include "five-g-appl.fullname" . }}-sctp
   labels:
-    {{- include "five-g-appl.labels" . | nindent 4 }}
+    helm.sh/chart: {{ include "five-g-appl.chart" . }}
+    app.kubernetes.io/name: {{ include "five-g-appl.name" . }}-sctp
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    drax/role: e2
+    drax/name: e2t
+    drax/component-name: {{ .Chart.Name }}-sctp
+    drax/component-version: {{ .Chart.Version }}
+    drax/instanceId: "{{ tpl .Values.e2tsctp.bootstrapId . }}"
 spec:
 {{- if not .Values.e2tsctp.autoscaling.enabled }}
   replicas: {{ .Values.e2tsctp.replicaCount }}
 {{- end }}
   selector:
     matchLabels:
-      {{- include "five-g-appl.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/name: {{ include "five-g-appl.name" . }}-sctp
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
     {{- with .Values.e2tsctp.podAnnotations }}
@@ -18,7 +28,16 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
-        {{- include "five-g-appl.labels" . | nindent 8 }}
+        helm.sh/chart: {{ include "five-g-appl.chart" . }}
+        app.kubernetes.io/name: {{ include "five-g-appl.name" . }}-sctp
+        app.kubernetes.io/instance: {{ .Release.Name }}
+        app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+        app.kubernetes.io/managed-by: {{ .Release.Service }}
+        drax/role: e2
+        drax/name: e2t
+        drax/component-name: {{ .Chart.Name }}-sctp
+        drax/component-version: {{ .Chart.Version }}
+        drax/instanceId: "{{ tpl .Values.e2tsctp.bootstrapId . }}"
     spec:
       {{- with .Values.e2tsctp.imagePullSecrets }}
       imagePullSecrets:
