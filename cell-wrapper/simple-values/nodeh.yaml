@@ -8,7 +8,7 @@ global:
           <type>nodeh</type>
           <base-config-file>/home/accelleran/5G/config/duNodeHConfig.json</base-config-file>
 
-          <ssh-connection-details xc:operation="create">
+          <ssh-connection-details xc:operation="replace">
             <host>127.0.0.1</host>
             <username>root</username>
           </ssh-connection-details>
@@ -17,23 +17,20 @@ global:
           install: |-
             <type>nodeHAskey</type>
 
-            <ssh-connection-details xc:operation="create">
+            <ssh-connection-details xc:operation="replace">
               <host>127.0.0.1</host>
               <username>root</username>
             </ssh-connection-details>
 
-            <serial-number>test123</serial-number>
-            
-            <supported-frequency-band xc:operation="create">77</supported-frequency-band>
+            <supported-frequency-band xc:operation="replace">77</supported-frequency-band>
+            <antenna-gain>0</antenna-gain>
+            <maximum-power-capability>0</maximum-power-capability>
+            <minimum-power-capability>0</minimum-power-capability>
 
-            <location xc:operation="create">
-              <latitude>4422566</latitude>
+            <serial-number>unknown</serial-number>
+            <location xc:operation="replace">
               <longitude>51213881</longitude>
+              <latitude>4422566</latitude>
               <altitude>0</altitude>
               <altitude-ref>msl-geoid</altitude-ref>
             </location>
-
-            <antenna-gain>0</antenna-gain>
-
-            <maximum-power-capability>0</maximum-power-capability>
-            <minimum-power-capability>0</minimum-power-capability>
