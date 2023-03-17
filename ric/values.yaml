@@ -725,6 +725,13 @@ keycloak-ingress:
 e2t:
   enabled: false
 
+  global:
+    natsUrl:  "{{ .Values.global.kubeIp }}"
+    natsPort: "31100" 
+
+    redisHostname:  "{{ .Values.global.kubeIp }}"
+    redisPort: "32200"
+
   e2tsctp:
     enabled: true
 

@@ -38,7 +38,7 @@ global:
   #   Value type: string
   #   Example:
   #
-  redisHostname: 10.55.1.2
+  redisHostname: "10.55.1.2"
   redisPort: "32200"
 
 
