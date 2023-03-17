@@ -7,13 +7,19 @@ global:
         install: |-
           <type>effnet</type>
 
-          <ssh-connection-details xc:operation="create">
+          <ssh-connection-details xc:operation="replace">
             <host>127.0.0.1</host>
             <username>root</username>
           </ssh-connection-details>
 
-          <l1 xc:operation="create">
-            <phluido-l1-config xc:operation="create">
+          <netconf-connection-details xc:operation="replace">
+            <host>127.0.0.1</host>
+            <username>effnet</username>
+            <password>effnet</password>
+          </netconf-connection-details>
+
+          <l1 xc:operation="replace">
+            <phluido-l1-config xc:operation="replace">
               <license-key>XXXX-YYYY-ZZZZ-WWWW</license-key>
               <bbu-addr>10.10.0.1</bbu-addr>
             </phluido-l1-config>
@@ -23,23 +29,37 @@ global:
           install: |-
             <type>benetel650</type>
 
-            <ssh-connection-details xc:operation="create">
+            <ssh-connection-details xc:operation="replace">
               <host>127.0.0.1</host>
               <username>root</username>
             </ssh-connection-details>
-
-            <serial-number>test123</serial-number>
             
-            <supported-frequency-band xc:operation="create">77</supported-frequency-band>
+            <supported-frequency-band xc:operation="replace">77</supported-frequency-band>
+            <antenna-gain>0</antenna-gain>
+            <maximum-power-capability>0</maximum-power-capability>
+            <minimum-power-capability>0</minimum-power-capability>
 
-            <location xc:operation="create">
-              <latitude>4422566</latitude>
+            <calibration xc:operation="replace">
+              <power>35</power>
+
+              <!--
+                Retrieve the attenuation value for antenna 1 and 3 with the command:
+                eeprog_cp60 -q -f -16 /dev/i2c-0 0x57 -r 780:5 && printf "\n" && eeprog_cp60 -q -f -16 /dev/i2c-0 0x57 -r 1060:5 && printf "\n"
+                -->
+              <attenuation xc:operation="replace">
+                <antenna>1</antenna>
+                <value>15000</value>
+              </attenuation>
+              <attenuation xc:operation="replace">
+                <antenna>3</antenna>
+                <value>15000</value>
+              </attenuation>
+            </calibration>
+
+            <serial-number>unknown</serial-number>
+            <location xc:operation="replace">
               <longitude>51213881</longitude>
+              <latitude>4422566</latitude>
               <altitude>0</altitude>
               <altitude-ref>msl-geoid</altitude-ref>
             </location>
-
-            <antenna-gain>0</antenna-gain>
-
-            <maximum-power-capability>0</maximum-power-capability>
-            <minimum-power-capability>0</minimum-power-capability>
