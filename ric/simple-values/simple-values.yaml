@@ -43,5 +43,5 @@ acc-4g-infrastructure:
 
 e2t:
   enabled: false
-  e2t-ap:
+  e2tap:
     numOfE2Nodes: "5"
