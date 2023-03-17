@@ -725,7 +725,7 @@ keycloak-ingress:
 e2t:
   enabled: false
 
-  e2t-sctp:
+  e2tsctp:
     enabled: true
 
     image:
@@ -750,7 +750,7 @@ e2t:
     draxNodeSelector:
       draxName: "{{ .Values.global.draxName }}"
 
-  e2t-ap:
+  e2tap:
     enabled: true
 
     numOfE2Nodes: "5"
@@ -774,7 +774,7 @@ e2t:
     draxNodeSelector:
       draxName: "{{ .Values.global.draxName }}"
 
-  e2-sm-kpm:
+  e2smkpm:
     enabled: false
 
     redisConfig:
