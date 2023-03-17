@@ -733,11 +733,11 @@ e2t:
 
     redisConfig:
       hostname: "{{ .Values.global.kubeIp }}"
-      port: 32200
+      port: "32200"
 
     nats:
       url: "{{ .Values.global.kubeIp }}"
-      port: 31100
+      port: "31100"
 
     bootstrapId: "e2-t"
 
@@ -760,11 +760,11 @@ e2t:
 
     redisConfig:
       hostname: "{{ .Values.global.kubeIp }}"
-      port: 32200
+      port: "32200"
 
     nats:
       url: "{{ .Values.global.kubeIp }}"
-      port: 31100
+      port: "31100"
 
     bootstrapId: "e2-t"
 
@@ -779,11 +779,11 @@ e2t:
 
     redisConfig:
       hostname: "{{ .Values.global.kubeIp }}"
-      port: 32200
+      port: "32200"
 
     nats:
       url: "{{ .Values.global.kubeIp }}"
-      port: 31100
+      port: "31100"
 
     bootstrapId: "e2-t"
 
