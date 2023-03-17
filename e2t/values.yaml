@@ -38,7 +38,7 @@ global:
   #   Value type: string
   #   Example:
   #
-  redisHostname: "10.55.1.2"
+  redisHostname: 10.55.1.2
   redisPort: "32200"
 
 
@@ -107,7 +107,7 @@ e2tsctp:
   nats:
     url: "{{ .Values.global.natsUrl }}"
     port: "{{ .Values.global.natsPort }}"
-
+  
   redisConfig:
     hostname: "{{ .Values.global.redisHostname }}"
     port: "{{ .Values.global.redisPort }}"
