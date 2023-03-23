@@ -12,7 +12,7 @@ metadata:
     drax/name: e2t
     drax/component-name: {{ .Chart.Name }}-sctp
     drax/component-version: {{ .Chart.Version }}
-    drax/instanceId: "{{ tpl .Values.e2tsctp.bootstrapId . }}"
+    drax/instanceId: "{{ tpl .Values.global.bootstrapId . }}"
 spec:
 {{- if not .Values.e2tsctp.autoscaling.enabled }}
   replicas: {{ .Values.e2tsctp.replicaCount }}
@@ -37,7 +37,7 @@ spec:
         drax/name: e2t
         drax/component-name: {{ .Chart.Name }}-sctp
         drax/component-version: {{ .Chart.Version }}
-        drax/instanceId: "{{ tpl .Values.e2tsctp.bootstrapId . }}"
+        drax/instanceId: "{{ tpl .Values.global.bootstrapId . }}"
     spec:
       {{- with .Values.e2tsctp.imagePullSecrets }}
       imagePullSecrets:
@@ -71,7 +71,7 @@ spec:
           {{ end }}
           env: 
             - name: NATS_SERVICE_URL
-              value: nats://{{ tpl .Values.e2tsctp.nats.url . }}:{{ tpl .Values.e2tsctp.nats.port . }}
+              value: nats://{{ tpl .Values.global.natsUrl . }}:{{ tpl .Values.global.natsPort . }}
             - name: ZLOG_CONF_PATH
               value: /home/accelleran/5G/zlog.conf
             - name: BOOTSTRAP_FILENAME

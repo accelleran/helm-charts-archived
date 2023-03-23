@@ -56,7 +56,7 @@ spec:
           {{ end }}
           env:
             - name: NATS_SERVICE_URL
-              value: nats://{{ tpl .Values.e2tap.nats.url . }}:{{ tpl .Values.e2tap.nats.port . }}
+              value: nats://{{ tpl .Values.global.natsUrl . }}:{{ tpl .Values.global.natsPort . }}
             - name: ZLOG_CONF_PATH
               value: /home/accelleran/5G/zlog.conf
             - name: BOOTSTRAP_FILENAME

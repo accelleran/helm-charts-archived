@@ -13,7 +13,7 @@ metadata:
     drax/name: e2t
     drax/component-name: {{ .Chart.Name }}-sctp
     drax/component-version: {{ .Chart.Version }}
-    drax/instanceId: "{{ tpl .Values.e2tsctp.bootstrapId . }}"
+    drax/instanceId: "{{ tpl .Values.global.bootstrapId . }}"
     drax/service-name: {{ tpl .Values.e2tsctp.sctpService.name . }}
 spec:
   type: {{ .Values.e2tsctp.sctpService.type }}

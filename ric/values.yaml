@@ -736,7 +736,7 @@ e2t:
     enabled: true
 
     image:
-      tag: "master-c9d13a75"
+      tag: "pr-e5137575b41e5b0f05c892c7d185cd7c35f1351d"
 
     redisConfig:
       hostname: "{{ .Values.global.kubeIp }}"
@@ -763,7 +763,7 @@ e2t:
     numOfE2Nodes: "5"
 
     image:
-      tag: "master-c9d13a75"
+      tag: "pr-e5137575b41e5b0f05c892c7d185cd7c35f1351d"
 
     redisConfig:
       hostname: "{{ .Values.global.kubeIp }}"

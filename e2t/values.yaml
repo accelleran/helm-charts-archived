@@ -103,16 +103,11 @@ e2tsctp:
   #    value: 127.0.0.1
   #  - name: "--ng"
   #    value: 127.0.0.5
-
-  nats:
-    url: "{{ .Values.global.natsUrl }}"
-    port: "{{ .Values.global.natsPort }}"
   
   redisConfig:
     hostname: "{{ .Values.global.redisHostname }}"
     port: "{{ .Values.global.redisPort }}"
 
-  bootstrapId: "{{ .Values.global.bootstrapId }}"
   bootstrapFile: /home/accelleran/5G/bootstrap.txt
 
   jaegerAgentHost:  "{{ .Values.global.jaegerAgentHost }}"
@@ -220,15 +215,10 @@ e2tap:
   #  - name: "--ng"
   #    value: 127.0.0.5
 
-  nats:
-    url: "{{ .Values.global.natsUrl }}"
-    port: "{{ .Values.global.natsPort }}"
-
   redisConfig:
     hostname: "{{ .Values.global.redisHostname }}"
     port: "{{ .Values.global.redisPort }}"
 
-  bootstrapId: "{{ .Values.global.bootstrapId }}"
   bootstrapFile: /home/accelleran/5G/bootstrap.txt
 
   jaegerAgentHost:  "{{ .Values.global.jaegerAgentHost }}"
@@ -333,15 +323,10 @@ e2smkpm:
   #  - name: "--ng"
   #    value: 127.0.0.5
 
-  nats:
-    url: "{{ .Values.global.natsUrl }}"
-    port: "{{ .Values.global.natsPort }}"
-
   redisConfig:
     hostname: "{{ .Values.global.redisHostname }}"
     port: "{{ .Values.global.redisPort }}"
 
-  bootstrapId: "e2-sm-kpm"
   bootstrapFile: /bootstrap.txt
 
   jaegerAgentHost:  "{{ .Values.global.jaegerAgentHost }}"
