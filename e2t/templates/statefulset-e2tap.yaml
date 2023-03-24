@@ -62,7 +62,7 @@ spec:
             - name: BOOTSTRAP_FILENAME
               value: {{ .Values.e2tap.bootstrapFile }}
             - name: JAEGER_AGENT_HOST
-              value: {{ tpl .Values.e2tap.jaegerAgentHost . }}
+              value: {{ tpl .Values.global.jaegerAgentHost . }}
             - name: __APPNAME
               value: e2Ap
             {{- if .Values.e2tap.extraEnvs }}

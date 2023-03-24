@@ -58,7 +58,7 @@ spec:
             - name: BOOTSTRAP_FILENAME
               value: {{ .Values.e2smkpm.bootstrapFile }}
             - name: JAEGER_AGENT_HOST
-              value: {{ tpl .Values.e2smkpm.jaegerAgentHost . }}
+              value: {{ tpl .Values.global.jaegerAgentHost . }}
             {{- if .Values.e2smkpm.extraEnvs }}
             {{ toYaml .Values.e2smkpm.extraEnvs | nindent 12 }}
             {{- end }}

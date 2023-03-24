@@ -77,7 +77,7 @@ spec:
             - name: BOOTSTRAP_FILENAME
               value: {{ .Values.e2tsctp.bootstrapFile }}
             - name: JAEGER_AGENT_HOST
-              value: {{ tpl .Values.e2tsctp.jaegerAgentHost . }}
+              value: {{ tpl .Values.global.jaegerAgentHost . }}
             - name: __APPNAME
               value: sctpE2ap
             {{- if .Values.e2tsctp.extraEnvs }}

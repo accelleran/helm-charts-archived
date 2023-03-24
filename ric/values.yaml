@@ -732,23 +732,14 @@ e2t:
     redisHostname:  "{{ .Values.global.kubeIp }}"
     redisPort: "32200"
 
-  e2tsctp:
-    enabled: true
-
-    image:
-      tag: "pr-e5137575b41e5b0f05c892c7d185cd7c35f1351d"
-
-    redisConfig:
-      hostname: "{{ .Values.global.kubeIp }}"
-      port: "32200"
-
-    nats:
-      url: "{{ .Values.global.kubeIp }}"
-      port: "31100"
+    tag: "master-c9d13a75"
 
     bootstrapId: "e2-t"
 
     jaegerAgentHost: "ric-jaeger-agent"
+
+  e2tsctp:
+    enabled: true      
 
     sctpService:
       nodePort: 31900
@@ -762,39 +753,12 @@ e2t:
 
     numOfE2Nodes: "5"
 
-    image:
-      tag: "pr-e5137575b41e5b0f05c892c7d185cd7c35f1351d"
-
-    redisConfig:
-      hostname: "{{ .Values.global.kubeIp }}"
-      port: "32200"
-
-    nats:
-      url: "{{ .Values.global.kubeIp }}"
-      port: "31100"
-
-    bootstrapId: "e2-t"
-
-    jaegerAgentHost: "ric-jaeger-agent"
-
     draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
     draxNodeSelector:
       draxName: "{{ .Values.global.draxName }}"
 
   e2smkpm:
     enabled: false
-
-    redisConfig:
-      hostname: "{{ .Values.global.kubeIp }}"
-      port: "32200"
-
-    nats:
-      url: "{{ .Values.global.kubeIp }}"
-      port: "31100"
-
-    bootstrapId: "e2-t"
-
-    jaegerAgentHost: "ric-jaeger-agent"
 
     draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
     draxNodeSelector:

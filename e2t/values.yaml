@@ -1,9 +1,4 @@
 global:
-  # Number of supported components
-  #   Description:  You have to specify the amount of different components that should be supported.
-  #                 Therefore, you have to specify:
-  #
-  numOfE2Nodes: 5
 
   # Bootstrap Instance ID
   #   Description:  The Bootstrap Instance ID. Is used by the logical group:
@@ -104,13 +99,7 @@ e2tsctp:
   #  - name: "--ng"
   #    value: 127.0.0.5
   
-  redisConfig:
-    hostname: "{{ .Values.global.redisHostname }}"
-    port: "{{ .Values.global.redisPort }}"
-
   bootstrapFile: /home/accelleran/5G/bootstrap.txt
-
-  jaegerAgentHost:  "{{ .Values.global.jaegerAgentHost }}"
 
   extraEnvs: []
   #  - name: __APPNAME
@@ -215,13 +204,7 @@ e2tap:
   #  - name: "--ng"
   #    value: 127.0.0.5
 
-  redisConfig:
-    hostname: "{{ .Values.global.redisHostname }}"
-    port: "{{ .Values.global.redisPort }}"
-
   bootstrapFile: /home/accelleran/5G/bootstrap.txt
-
-  jaegerAgentHost:  "{{ .Values.global.jaegerAgentHost }}"
 
   extraEnvs: []
   #  - name: __APPNAME
@@ -323,13 +306,7 @@ e2smkpm:
   #  - name: "--ng"
   #    value: 127.0.0.5
 
-  redisConfig:
-    hostname: "{{ .Values.global.redisHostname }}"
-    port: "{{ .Values.global.redisPort }}"
-
   bootstrapFile: /bootstrap.txt
-
-  jaegerAgentHost:  "{{ .Values.global.jaegerAgentHost }}"
 
   extraEnvs:
     - name: __APPNAME
