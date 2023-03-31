@@ -5,14 +5,14 @@ global:
     # The name of this helm chart
     name: "cell-wrapper"
     # The version of this helm chart
-    helmVersion: "2.0.0"
+    helmVersion: "2.0.1"
 
   # Version of the application
   #   Description: This is the version of the application
   #                in DockerHub.
   #   Value type: string
   #
-  tag: "CW2.0.0"
+  tag: "CW2.0.1"
 
   # CW Instance ID
   #   Description:  The Instance ID of the CW component that
