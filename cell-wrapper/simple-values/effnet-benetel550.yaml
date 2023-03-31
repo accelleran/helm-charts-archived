@@ -12,12 +12,6 @@ global:
             <username>root</username>
           </ssh-connection-details>
 
-          <netconf-connection-details xc:operation="replace">
-            <host>127.0.0.1</host>
-            <username>effnet</username>
-            <password>effnet</password>
-          </netconf-connection-details>
-
           <l1 xc:operation="replace">
             <phluido-l1-config xc:operation="replace">
               <license-key>XXXX-YYYY-ZZZZ-WWWW</license-key>
@@ -27,7 +21,7 @@ global:
         rus:
         - name: "ru-1"
           install: |-
-            <type>benetel650</type>
+            <type>benetel550</type>
 
             <ssh-connection-details xc:operation="replace">
               <host>127.0.0.1</host>
@@ -36,7 +30,7 @@ global:
             
             <supported-frequency-band xc:operation="replace">77</supported-frequency-band>
             <antenna-gain>0</antenna-gain>
-            <maximum-power-capability>0</maximum-power-capability>
+            <maximum-power-capability>24</maximum-power-capability>
             <minimum-power-capability>0</minimum-power-capability>
 
             <calibration xc:operation="replace">

@@ -24,7 +24,7 @@ global:
 
             <supported-frequency-band xc:operation="replace">77</supported-frequency-band>
             <antenna-gain>0</antenna-gain>
-            <maximum-power-capability>0</maximum-power-capability>
+            <maximum-power-capability>24</maximum-power-capability>
             <minimum-power-capability>0</minimum-power-capability>
 
             <serial-number>unknown</serial-number>
