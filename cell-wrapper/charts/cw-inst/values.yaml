@@ -90,18 +90,19 @@ secrets:
 
 baseConfig:
   configDir: "/home/accelleran/5G/config"
-  effnet: []
-  # - file: "default.du.json"
-  #   data: |-
-  #     <data>
-  # - file: "default.kpi.json"
-  #   data: |-
-  #     <data>
-  phluido: []
-  # - file: "default.l1.cfg"
-  #   data: |-
-  #     <data>
-  nodeh: []
-  # - file: "default.json"
-  #   data: |-
-  #     <data>
+  vendors: null
+    # effnet:
+    # - file: "default.du.json"
+    #   data: |
+    #     <data>
+    # - file: "default.kpi.json"
+    #   data: |
+    #     <data>
+    # phluido:
+    # - file: "default.l1.cfg"
+    #   data: |
+    #     <data>
+    # nodeh:
+    # - file: "default.json"
+    #   data: |
+    #     <data>
