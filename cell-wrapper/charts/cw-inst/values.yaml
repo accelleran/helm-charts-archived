@@ -21,7 +21,6 @@ spareInstanceCount: 0
 
 # Application Settings
 # cmd: "./cellWrapperInstanceAppl.exe"
-cmd: "./cellWrapperInstanceAppl.exe"
 
 args: []
 #  - name: "--own"
