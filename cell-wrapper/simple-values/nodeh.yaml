@@ -15,7 +15,7 @@ global:
         rus:
         - name: "ru-1"
           install: |-
-            <type>nodeHAskey</type>
+            <type>nodehAskey</type>
 
             <ssh-connection-details xc:operation="replace">
               <host>127.0.0.1</host>
