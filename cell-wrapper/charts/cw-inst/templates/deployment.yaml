@@ -57,26 +57,10 @@ spec:
             - name: {{ include "acc-common.fullname" . }}-ssh-key
               mountPath: "/home/accelleran/5G/ssh/"
               readOnly: true
-            {{- if gt (len .Values.baseConfig.effnet) 0 }}
-            {{- range .Values.baseConfig.effnet }}
-            - name: {{ include "acc-common.fullname" $ }}-effnet
-              mountPath: "{{ $.Values.baseConfig.configDir }}/effnet/{{ .file }}"
-              subPath: "{{ .file }}"
-              readOnly: true
-            {{- end }}
-            {{- end }}
-            {{- if gt (len .Values.baseConfig.phluido) 0 }}
-            {{- range .Values.baseConfig.phluido }}
-            - name: {{ include "acc-common.fullname" $ }}-phluido
-              mountPath: "{{ $.Values.baseConfig.configDir }}/phluido/{{ .file }}"
-              subPath: "{{ .file }}"
-              readOnly: true
-            {{- end }}
-            {{- end }}
-            {{- if gt (len .Values.baseConfig.nodeh) 0 }}
-            {{- range .Values.baseConfig.nodeh }}
-            - name: {{ include "acc-common.fullname" $ }}-nodeh
-              mountPath: "{{ $.Values.baseConfig.configDir }}/nodeh/{{ .file }}"
+            {{- range $vendor, $v := .Values.baseConfig.vendors }}
+            {{- range $v }}
+            - name: {{ include "acc-common.fullname" $ }}-{{ $vendor }}
+              mountPath: "{{ $.Values.baseConfig.configDir }}/{{ $vendor }}/{{ .file }}"
               subPath: "{{ .file }}"
               readOnly: true
             {{- end }}
@@ -108,18 +92,8 @@ spec:
           secret:
             secretName: {{ tpl .Values.secrets.sshKey . }}
             defaultMode: 256
-        {{- if gt (len .Values.baseConfig.effnet) 0 }}
-        - name: {{ include "acc-common.fullname" . }}-effnet
+        {{- range $vendor, $v := .Values.baseConfig.vendors }}
+        - name: {{ include "acc-common.fullname" $ }}-{{ $vendor }}
           configMap:
-            name: {{ include "acc-common.fullname" . }}-effnet
-        {{- end }}
-        {{- if gt (len .Values.baseConfig.phluido) 0 }}
-        - name: {{ include "acc-common.fullname" . }}-phluido
-          configMap:
-            name: {{ include "acc-common.fullname" . }}-phluido
-        {{- end }}
-        {{- if gt (len .Values.baseConfig.nodeh) 0 }}
-        - name: {{ include "acc-common.fullname" . }}-nodeh
-          configMap:
-            name: {{ include "acc-common.fullname" . }}-nodeh
+            name: {{ include "acc-common.fullname" $ }}-{{ $vendor }}
         {{- end }}
