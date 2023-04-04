@@ -57,22 +57,30 @@ spec:
             - name: {{ include "acc-common.fullname" . }}-ssh-key
               mountPath: "/home/accelleran/5G/ssh/"
               readOnly: true
-            - name: {{ include "acc-common.fullname" . }}-du-effnet
-              mountPath: "{{ .Values.baseConfig.configDir }}/{{ .Values.baseConfig.du.effnet.file }}"
-              subPath: "{{ .Values.baseConfig.du.effnet.file }}"
+            {{- if gt (len .Values.baseConfig.effnet) 0 }}
+            {{- range .Values.baseConfig.effnet }}
+            - name: {{ include "acc-common.fullname" $ }}-effnet
+              mountPath: "{{ $.Values.baseConfig.configDir }}/effnet/{{ .file }}"
+              subPath: "{{ .file }}"
               readOnly: true
-            - name: {{ include "acc-common.fullname" . }}-du-effnet
-              mountPath: "{{ .Values.baseConfig.configDir }}/{{ .Values.baseConfig.du.effnet.kpiFile }}"
-              subPath: "{{ .Values.baseConfig.du.effnet.kpiFile }}"
+            {{- end }}
+            {{- end }}
+            {{- if gt (len .Values.baseConfig.phluido) 0 }}
+            {{- range .Values.baseConfig.phluido }}
+            - name: {{ include "acc-common.fullname" $ }}-phluido
+              mountPath: "{{ $.Values.baseConfig.configDir }}/phluido/{{ .file }}"
+              subPath: "{{ .file }}"
               readOnly: true
-            - name: {{ include "acc-common.fullname" . }}-l1-phluido
-              mountPath: "{{ .Values.baseConfig.configDir }}/{{ .Values.baseConfig.l1.phluido.file }}"
-              subPath: "{{ .Values.baseConfig.l1.phluido.file }}"
+            {{- end }}
+            {{- end }}
+            {{- if gt (len .Values.baseConfig.nodeh) 0 }}
+            {{- range .Values.baseConfig.nodeh }}
+            - name: {{ include "acc-common.fullname" $ }}-nodeh
+              mountPath: "{{ $.Values.baseConfig.configDir }}/nodeh/{{ .file }}"
+              subPath: "{{ .file }}"
               readOnly: true
-            - name: {{ include "acc-common.fullname" . }}-du-nodeh
-              mountPath: "{{ .Values.baseConfig.configDir }}/{{ .Values.baseConfig.du.nodeh.file }}"
-              subPath: "{{ .Values.baseConfig.du.nodeh.file }}"
-              readOnly: true
+            {{- end }}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- if or (.Values.nodeSelector) (eq (tpl .Values.draxNodeSelectorEnabled .) "true") }}
@@ -100,12 +108,18 @@ spec:
           secret:
             secretName: {{ tpl .Values.secrets.sshKey . }}
             defaultMode: 256
-        - name: {{ include "acc-common.fullname" . }}-du-effnet
+        {{- if gt (len .Values.baseConfig.effnet) 0 }}
+        - name: {{ include "acc-common.fullname" . }}-effnet
           configMap:
-            name: {{ include "acc-common.fullname" . }}-du-effnet
-        - name: {{ include "acc-common.fullname" . }}-l1-phluido
+            name: {{ include "acc-common.fullname" . }}-effnet
+        {{- end }}
+        {{- if gt (len .Values.baseConfig.phluido) 0 }}
+        - name: {{ include "acc-common.fullname" . }}-phluido
           configMap:
-            name: {{ include "acc-common.fullname" . }}-l1-phluido
-        - name: {{ include "acc-common.fullname" . }}-du-nodeh
+            name: {{ include "acc-common.fullname" . }}-phluido
+        {{- end }}
+        {{- if gt (len .Values.baseConfig.nodeh) 0 }}
+        - name: {{ include "acc-common.fullname" . }}-nodeh
           configMap:
-            name: {{ include "acc-common.fullname" . }}-du-nodeh
+            name: {{ include "acc-common.fullname" . }}-nodeh
+        {{- end }}
