@@ -726,7 +726,8 @@ e2t:
   enabled: false
 
   global:
-    natsUrl:  "{{ .Values.global.kubeIp }}"
+
+    natsHostname:  "{{ .Values.global.kubeIp }}"
     natsPort: "31100" 
 
     redisHostname:  "{{ .Values.global.kubeIp }}"

@@ -14,7 +14,7 @@ global:
   #                to NATS
   #   Value type: string
   #
-  natsUrl: "10.55.1.2"
+  natsHostname: "10.55.1.2"
   natsPort: "31100"
 
 
