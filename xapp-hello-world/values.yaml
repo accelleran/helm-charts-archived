@@ -32,9 +32,6 @@ initImage:
   pullPolicy: IfNotPresent
   tag: "latest"
 
-initConfig:
-  kafkaUrl: "ric-acc-kafka.{{ .Release.Namespace }}:9092"
-
 imagePullSecrets:
   - name: accelleran-secret
 
@@ -95,15 +92,28 @@ securityContext:
 
 restService:
   enabled: true
-  type: ClusterIP
+  type: NodePort
   port: 8888
   name: "xapp-api"
+  # nodePort: 32223
 
 sshService:
   name: "xapp-dev-ssh"
   type: NodePort
   port: 22
   # nodePort: 30953
+
+udpService:
+  enabled: false
+  name: "xapp-udp"
+  port: 9090
+  # nodePort: 30130
+
+tcpService:
+  enabled: false
+  name: "xapp-tcp"
+  port: 80
+  # nodePort: 32222
 
 ingress:
   enabled: false
