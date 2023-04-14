@@ -38,14 +38,16 @@ spec:
             - "-c"
             - |
               /bin/bash <<'EOF'
-              service sshd start
+              mkdir /run/openrc
+              touch /run/openrc/softlevel
+              rc-status
+              rc-service sshd start
               echo -n 'root:{{ .Values.sshService.sshPassword }}' | chpasswd
               while true; do sleep 30; done;
               EOF
           ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
+            - name: ssh
+              containerPort: {{ .Values.sshService.port }}
 #          livenessProbe:
 #            httpGet:
 #              path: /
