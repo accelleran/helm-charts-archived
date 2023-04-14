@@ -1,0 +1,19 @@
+{{- if .Values.sshService.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "acc-debugger.fullname" . }}-xapp-ssh
+  labels:
+    {{- include "acc-debugger.labels" . | nindent 4 }}
+    drax/xapp-component-name: xapp-dev-ssh
+spec:
+  type: {{ .Values.sshService.type }}
+  ports:
+    - port: {{ .Values.sshService.port }}
+      name:  {{ .Values.sshService.name }}
+      {{ if .Values.sshService.nodePort }}
+      nodePort: {{ .Values.sshService.nodePort }}
+      {{ end }}
+  selector:
+    {{- include "acc-debugger.selectorLabels" . | nindent 4 }}
+{{- end }}
