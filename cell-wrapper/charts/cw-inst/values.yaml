@@ -21,7 +21,6 @@ spareInstanceCount: 0
 
 # Application Settings
 # cmd: "./cellWrapperInstanceAppl.exe"
-cmd: "./cellWrapperInstanceAppl.exe"
 
 args: []
 #  - name: "--own"
@@ -90,16 +89,19 @@ secrets:
 
 baseConfig:
   configDir: "/home/accelleran/5G/config"
-  du:
-    effnet:
-      file: "duEffnetConfig.json"
-      data: null
-      kpiFile: "duEffnetKpiConfig.json"
-      kpiData: null
-    nodeh:
-      file: "duNodeHConfig.json"
-      data: null
-  l1:
-    phluido:
-      file: "l1PhluidoConfig.cfg"
-      data: null
+  vendors: null
+    # effnet:
+    # - file: "default.du.json"
+    #   data: |
+    #     <data>
+    # - file: "default.kpi.json"
+    #   data: |
+    #     <data>
+    # phluido:
+    # - file: "default.l1.cfg"
+    #   data: |
+    #     <data>
+    # nodeh:
+    # - file: "default.json"
+    #   data: |
+    #     <data>
