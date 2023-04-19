@@ -56,13 +56,13 @@ spec:
           {{ end }}
           env:
             - name: NATS_SERVICE_URL
-              value: nats://{{ tpl .Values.global.natsUrl . }}:{{ tpl .Values.global.natsPort . }}
+              value: nats://{{ tpl .Values.natsUrl . }}:{{ tpl .Values.natsPort . }}
             - name: ZLOG_CONF_PATH
               value: /home/accelleran/5G/zlog.conf
             - name: BOOTSTRAP_FILENAME
               value: {{ .Values.e2tap.bootstrapFile }}
             - name: JAEGER_AGENT_HOST
-              value: {{ tpl .Values.global.jaegerAgentHost . }}
+              value: {{ tpl .Values.jaegerAgentHost . }}
             - name: __APPNAME
               value: e2Ap
             {{- if .Values.e2tap.extraEnvs }}

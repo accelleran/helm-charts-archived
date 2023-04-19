@@ -725,19 +725,17 @@ keycloak-ingress:
 e2t:
   enabled: false
 
-  global:
+  natsHostname:  "{{ .Values.global.kubeIp }}"
+  natsPort: "31100" 
 
-    natsHostname:  "{{ .Values.global.kubeIp }}"
-    natsPort: "31100" 
+  redisHostname:  "{{ .Values.global.kubeIp }}"
+  redisPort: "32200"
 
-    redisHostname:  "{{ .Values.global.kubeIp }}"
-    redisPort: "32200"
+  tag: "R4.1.0-rc1_jupiler"
 
-    tag: "R4.1.0-rc1_jupiler"
+  bootstrapId: "e2-t"
 
-    bootstrapId: "e2-t"
-
-    jaegerAgentHost: "ric-jaeger-agent"
+  jaegerAgentHost: "ric-jaeger-agent"
 
   e2tsctp:
     enabled: true      

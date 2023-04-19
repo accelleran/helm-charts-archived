@@ -6,6 +6,6 @@ metadata:
     {{- include "five-g-appl.labels" . | nindent 4 }}
 data:
   bootstrap.txt: |
-    redis.hostname:{{ tpl .Values.global.redisHostname . }}
-    redis.port:{{ tpl .Values.global.redisPort . }}
-    instance.filter:{{ tpl .Values.global.bootstrapId . }}
+    redis.hostname:{{ tpl .Values.redisHostname . }}
+    redis.port:{{ tpl .Values.redisPort . }}
+    instance.filter:{{ tpl .Values.bootstrapId . }}

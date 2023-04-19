@@ -12,7 +12,7 @@ metadata:
     drax/name: e2t
     drax/component-name: {{ .Chart.Name }}-sctp
     drax/component-version: {{ .Chart.Version }}
-    drax/instanceId: "{{ tpl .Values.global.bootstrapId . }}"
+    drax/instanceId: "{{ tpl .Values.bootstrapId . }}"
 spec:
 {{- if not .Values.e2tsctp.autoscaling.enabled }}
   replicas: {{ .Values.e2tsctp.replicaCount }}
@@ -37,7 +37,7 @@ spec:
         drax/name: e2t
         drax/component-name: {{ .Chart.Name }}-sctp
         drax/component-version: {{ .Chart.Version }}
-        drax/instanceId: "{{ tpl .Values.global.bootstrapId . }}"
+        drax/instanceId: "{{ tpl .Values.bootstrapId . }}"
     spec:
       {{- with .Values.e2tsctp.imagePullSecrets }}
       imagePullSecrets:
@@ -71,13 +71,13 @@ spec:
           {{ end }}
           env: 
             - name: NATS_SERVICE_URL
-              value: nats://{{ tpl .Values.global.natsHostname . }}:{{ tpl .Values.global.natsPort . }}
+              value: nats://{{ tpl .Values.natsHostname . }}:{{ tpl .Values.natsPort . }}
             - name: ZLOG_CONF_PATH
               value: /home/accelleran/5G/zlog.conf
             - name: BOOTSTRAP_FILENAME
               value: {{ .Values.e2tsctp.bootstrapFile }}
             - name: JAEGER_AGENT_HOST
-              value: {{ tpl .Values.global.jaegerAgentHost . }}
+              value: {{ tpl .Values.jaegerAgentHost . }}
             - name: __APPNAME
               value: sctpE2ap
             {{- if .Values.e2tsctp.extraEnvs }}

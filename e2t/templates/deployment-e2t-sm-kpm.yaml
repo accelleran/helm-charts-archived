@@ -52,13 +52,13 @@ spec:
           {{ end }}
           env:
             - name: NATS_SERVICE_URL
-              value: nats://{{ tpl .Values.global.natsHostname . }}:{{ tpl .Values.global.natsPort . }}
+              value: nats://{{ tpl .Values.natsHostname . }}:{{ tpl .Values.natsPort . }}
             - name: ZLOG_CONF_PATH
               value: /zlog.conf
             - name: BOOTSTRAP_FILENAME
               value: {{ .Values.e2smkpm.bootstrapFile }}
             - name: JAEGER_AGENT_HOST
-              value: {{ tpl .Values.global.jaegerAgentHost . }}
+              value: {{ tpl .Values.jaegerAgentHost . }}
             {{- if .Values.e2smkpm.extraEnvs }}
             {{ toYaml .Values.e2smkpm.extraEnvs | nindent 12 }}
             {{- end }}
