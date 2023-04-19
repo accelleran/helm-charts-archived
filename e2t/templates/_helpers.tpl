@@ -63,11 +63,11 @@ drax/name: e2t
 drax/component-name: {{ .Chart.Name }}
 drax/component-version: {{ .Chart.Version }}
 {{- if index .Values "e2tsctp" }}
-drax/instanceId: "{{ tpl .Values.global.bootstrapId . }}"
+drax/instanceId: "{{ tpl .Values.bootstrapId . }}"
 {{- else if index .Values "e2tap" }}
-drax/instanceId: "{{ tpl .Values.global.bootstrapId . }}"
+drax/instanceId: "{{ tpl .Values.bootstrapId . }}"
 {{- else }}
-drax/instanceId: "{{ tpl .Values.global.bootstrapId . }}"
+drax/instanceId: "{{ tpl .Values.bootstrapId . }}"
 {{- end }}
 {{- end }}
 
