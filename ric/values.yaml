@@ -731,11 +731,15 @@ e2t:
   redisHostname:  "{{ .Values.global.kubeIp }}"
   redisPort: "32200"
 
-  tag: "R4.1.0-rc1_jupiler"
+  tag: ""
 
   bootstrapId: "e2-t"
 
   jaegerAgentHost: "ric-jaeger-agent"
+
+  draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
+  draxNodeSelector:
+      draxName: "{{ .Values.global.draxName }}"
 
   e2tsctp:
     enabled: true      
@@ -743,22 +747,10 @@ e2t:
     sctpService:
       nodePort: 31900
 
-    draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
-    draxNodeSelector:
-      draxName: "{{ .Values.global.draxName }}"
-
   e2tap:
     enabled: true
 
     numOfE2Nodes: "5"
 
-    draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
-    draxNodeSelector:
-      draxName: "{{ .Values.global.draxName }}"
-
   e2smkpm:
     enabled: false
-
-    draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
-    draxNodeSelector:
-      draxName: "{{ .Values.global.draxName }}"

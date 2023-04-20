@@ -80,7 +80,7 @@ e2tsctp:
     repository: accelleran/e2sctpappl
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "{{ .Values.global.tag }}"
+    tag: ""
 
   imagePullSecrets:
     - name: accelleran-secret
@@ -163,11 +163,6 @@ e2tsctp:
 
   nodeSelector: {}
 
-  draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
-
-  draxNodeSelector:
-    draxName: "{{ .Values.global.draxName }}"
-
   tolerations: []
 
   affinity: {}
@@ -179,13 +174,13 @@ e2tsctp:
 e2tap:
   enabled: true
 
-  numOfE2Nodes: "{{ .Values.global.numOfE2Nodes }}"
+  numOfE2Nodes: "5"
 
   image:
     repository: accelleran/e2apintfappl
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "{{ .Values.global.tag }}"
+    tag: ""
 
   imagePullSecrets:
     - name: accelleran-secret
@@ -266,11 +261,6 @@ e2tap:
 
   nodeSelector: {}
 
-  draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
-
-  draxNodeSelector:
-    draxName: "{{ .Values.global.draxName }}"
-
   tolerations: []
 
   affinity: {}
@@ -287,7 +277,7 @@ e2smkpm:
     repository: accelleran/e2smkpmappl
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
-    tag: "{{ .Values.global.tag }}"
+    tag: ""
 
   imagePullSecrets:
     - name: accelleran-secret
@@ -328,7 +318,7 @@ e2smkpm:
 
   service:
     enabled: false
-    name: "{{ .Values.global.bootstrapId }}"
+    name: "e2-kpm-sm"
     type: NodePort
     protocol: SCTP
     port: 80
@@ -369,11 +359,6 @@ e2smkpm:
     # targetMemoryUtilizationPercentage: 80
 
   nodeSelector: {}
-
-  draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
-
-  draxNodeSelector:
-    draxName: "{{ .Values.global.draxName }}"
 
   tolerations: []
 
