@@ -20,4 +20,4 @@ version: 1.0.0-rc2
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
-appVersion: "master-c9d13a75"
+appVersion: "R4.1.0-rc4_jupiler"
