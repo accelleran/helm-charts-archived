@@ -5,7 +5,7 @@ global:
     # The name of this helm chart
     name: "cell-wrapper"
     # The version of this helm chart
-    helmVersion: "2.2.0-alpha.1"
+    helmVersion: "2.2.0-rc.1"
 
   # Version of the application
   #   Description: This is the version of the application
