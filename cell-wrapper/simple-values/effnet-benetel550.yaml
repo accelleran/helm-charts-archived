@@ -1,7 +1,7 @@
 global:
-  # Documentation: https://accelleran.atlassian.net/wiki/spaces/GS/pages/2298183683/Configuration
   config:
     enabled: true
+    # Documentation: https://accelleran.atlassian.net/wiki/spaces/GS/pages/2298183683/Configuration
     dus:
       - name: "du-1"
         install: |-
@@ -32,23 +32,6 @@ global:
             <antenna-gain>0</antenna-gain>
             <maximum-power-capability>24</maximum-power-capability>
             <minimum-power-capability>0</minimum-power-capability>
-
-            <calibration xc:operation="replace">
-              <power>35</power>
-
-              <!--
-                Retrieve the attenuation value for antenna 1 and 3 with the command:
-                eeprog_cp60 -q -f -16 /dev/i2c-0 0x57 -r 780:5 && printf "\n" && eeprog_cp60 -q -f -16 /dev/i2c-0 0x57 -r 1060:5 && printf "\n"
-                -->
-              <attenuation xc:operation="replace">
-                <antenna>1</antenna>
-                <value>15000</value>
-              </attenuation>
-              <attenuation xc:operation="replace">
-                <antenna>3</antenna>
-                <value>15000</value>
-              </attenuation>
-            </calibration>
 
             <serial-number>unknown</serial-number>
             <location xc:operation="replace">
