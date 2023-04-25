@@ -60,7 +60,7 @@ acc-kafka:
     KAFKA_ADVERTISED_HOST_NAME: "{{ .Values.global.kubeIp }}"
     KAFKA_ZOOKEEPER_CONNECT: "{{ .Release.Name }}-zookeeper.{{ .Release.Namespace }}:2181"
     KAFKA_BROKER_ID: "0"
-    KAFKA_CREATE_TOPICS: "accelleran.drax.4g.ric.raw.network_state:1:1,accelleran.drax.4g.ric.raw.messages:1:1,accelleran.drax.4g.ric.raw.service_discovery:1:1,accelleran.drax.4g.ric.raw.ue_measurements:1:1,accelleran.drax.5g.ric.raw.cu_state:1:1,accelleran.drax.5g.ric.raw.ue_measurements:1:1,accelleran.drax.5g.ric.raw.pm_counters:1:1,accelleran.drax.5g.ric.raw.messages:1:1,accelleran.drax.5g.ric.processed.pm_counters:1:1"
+    KAFKA_CREATE_TOPICS: "accelleran.drax.4g.ric.raw.network_state:1:1,accelleran.drax.4g.ric.raw.messages:1:1,accelleran.drax.4g.ric.raw.service_discovery:1:1,accelleran.drax.4g.ric.raw.ue_measurements:1:1,accelleran.drax.5g.ric.raw.cu_state:1:1,accelleran.drax.5g.ric.raw.ue_measurements:1:1,accelleran.drax.5g.ric.raw.pm_counters:1:1,accelleran.drax.5g.ric.raw.messages:1:1,accelleran.drax.5g.ric.processed.pm_counters:1:1,accelleran.drax.5g.ric.raw.ran_control_response:1:1"
     KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
     JMX_PORT: "9010"
 
