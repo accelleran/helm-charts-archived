@@ -738,4 +738,4 @@ config-api:
     service_monitor_port: "80"
 
 cell-wrapper:
-  enabled: true
+  enabled: false
