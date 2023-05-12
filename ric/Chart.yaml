@@ -101,5 +101,5 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: cell-wrapper
     condition: cell-wrapper.enabled
-    version: 2.2.0-rc.3
+    version: 2.2.0-rc.4
     repository: https://accelleran.github.io/helm-charts/
