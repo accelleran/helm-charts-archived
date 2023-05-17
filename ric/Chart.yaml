@@ -76,12 +76,12 @@ dependencies:
   - name: golang-nkafka
     alias: golang-nkafka-4g
     condition: global.enable4G
-    version: 1.1.0
+    version: 1.2.0
     repository: https://accelleran.github.io/helm-charts/
   - name: golang-nkafka
     alias: golang-nkafka-5g
     condition: global.enable5G
-    version: 1.1.0
+    version: 1.2.0
     repository: https://accelleran.github.io/helm-charts
   - name: acc-4g-infrastructure
     condition: global.enable4G
