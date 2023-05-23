@@ -483,7 +483,7 @@ golang-nkafka-5g:
     tag: "1.3.0_R4.1.0-rc6_jupiler_CW2.2.0-rc.1"
 
   initConfig:
-    kafkaTopicsCheck: "accelleran.drax.5g.ric.raw.messages,accelleran.drax.5g.ric.raw.pm_counters,accelleran.drax.5g.ric.raw.ue_measurements,accelleran.drax.5g.ric.raw.cu_state"
+    kafkaTopicsCheck: "accelleran.drax.5g.ric.raw.messages,accelleran.drax.5g.ric.raw.pm_counters,accelleran.drax.5g.ric.raw.ue_measurements,accelleran.drax.5g.ric.raw.cu_state,accelleran.drax.5g.ric.raw.ran_control_response"
 
   kafkaUrl: "{{ .Release.Name }}-acc-kafka.{{ .Release.Namespace }}:9092"
   natsUrl: "{{ .Release.Name }}-nats-5g.{{ .Release.Namespace }}:4222"

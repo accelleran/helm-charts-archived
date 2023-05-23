@@ -26,7 +26,7 @@ initImage:
 initConfig:
   natsCheckEnabled: true
   kafkaCheckEnabled: true
-  kafkaTopicsCheck: "accelleran.drax.5g.ric.raw.messages,accelleran.drax.5g.ric.raw.pm_counters,accelleran.drax.5g.ric.raw.ue_measurements,accelleran.drax.5g.ric.raw.cu_state"
+  kafkaTopicsCheck: "accelleran.drax.5g.ric.raw.messages,accelleran.drax.5g.ric.raw.pm_counters,accelleran.drax.5g.ric.raw.ue_measurements,accelleran.drax.5g.ric.raw.cu_state,accelleran.drax.5g.ric.raw.ran_control_response"
 
 imagePullSecrets:
   - name: accelleran-secret
