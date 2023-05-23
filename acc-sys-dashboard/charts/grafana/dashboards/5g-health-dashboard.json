@@ -15,8 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 2,
-  "iteration": 1676973594759,
+  "id": 6,
+  "iteration": 1684839024547,
   "links": [],
   "panels": [
     {
@@ -1194,7 +1194,7 @@
       "pluginVersion": "7.3.7",
       "targets": [
         {
-          "expr": "sum(kube_pod_container_status_running{pod=~\".*cuup.*\", container=\"e1-sctp-up\"}) or kube_pod_container_status_running{pod=~\"kube-apiserver-.*\"}-1",
+          "expr": "sum(kube_pod_container_status_running{pod=~\".*cu-up.*\", container=~\".*netconf.*\"}) or kube_pod_container_status_running{pod=~\"kube-apiserver-.*\"}-1",
           "format": "table",
           "hide": false,
           "instant": true,
@@ -3985,7 +3985,6 @@
         "allValue": ".*5g.*",
         "current": {
           "selected": true,
-          "tags": [],
           "text": [
             "All"
           ],
@@ -4099,5 +4098,5 @@
   "timezone": "",
   "title": "Accelleran dRAX 5G System Dashboard",
   "uid": "786sGw2Mk",
-  "version": 1
+  "version": 2
 }
