@@ -1,5 +1,5 @@
 {{- if .Values.e2smkpm.ingress.enabled -}}
-{{- $fullName := include "five-g-appl.fullname" . -}}
+{{- $fullName := include "e2t.fullname" . -}}
 {{- $svcPort := .Values.e2smkpm.service.port -}}
 {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
 apiVersion: networking.k8s.io/v1beta1
@@ -10,7 +10,7 @@ kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    {{- include "five-g-appl.labels" . | nindent 4 }}
+    {{- include "e2t.labels" . | nindent 4 }}
   {{- with .Values.e2smkpm.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}

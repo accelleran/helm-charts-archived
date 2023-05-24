@@ -1,17 +1,17 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: {{ include "five-g-appl.fullname" . }}
+  name: {{ include "e2t.fullname" . }}
   labels:
-    {{- include "five-g-appl.labels" . | nindent 4 }}
+    {{- include "e2t.labels" . | nindent 4 }}
 spec:
-  serviceName: {{ include "five-g-appl.fullname" . }}-service
+  serviceName: {{ include "e2t.fullname" . }}-service
   {{- if not .Values.e2tap.autoscaling.enabled }}
   replicas: {{ tpl .Values.e2tap.numOfE2Nodes . }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "five-g-appl.selectorLabels" . | nindent 6 }}
+      {{- include "e2t.selectorLabels" . | nindent 6 }}
   template:
     metadata:
     {{- with .Values.e2tap.podAnnotations }}
@@ -19,13 +19,13 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
-        {{- include "five-g-appl.labels" . | nindent 8 }}
+        {{- include "e2t.labels" . | nindent 8 }}
     spec:
       {{- with .Values.e2tap.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "five-g-appl.serviceAccountName" . }}
+      serviceAccountName: {{ include "e2t.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.e2tap.podSecurityContext | nindent 8 }}
       containers:
@@ -79,7 +79,7 @@ spec:
 #              path: /
 #              port: http
           volumeMounts:
-            - name: {{ include "five-g-appl.fullname" . }}-bootstrap
+            - name: {{ include "e2t.fullname" . }}-bootstrap
               mountPath: {{ .Values.e2tap.bootstrapFile }}
               subPath: "bootstrap.txt"
             {{ if and (.Values.e2tap.developerMode.enabled) (.Values.e2tap.developerMode.hostPath) }}
@@ -111,9 +111,9 @@ spec:
       {{- end }}
       volumes:
 
-        - name: {{ include "five-g-appl.fullname" . }}-bootstrap
+        - name: {{ include "e2t.fullname" . }}-bootstrap
           configMap:
-            name: {{ include "five-g-appl.fullname" . }}-bootstrap
+            name: {{ include "e2t.fullname" . }}-bootstrap
 
         {{ if and (.Values.e2tap.developerMode.enabled) (.Values.e2tap.developerMode.hostPath) }}
         - name: dev-work-dir

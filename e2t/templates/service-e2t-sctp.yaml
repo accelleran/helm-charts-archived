@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "five-g-appl.fullname" . }}-sctp
+  name: {{ include "e2t.fullname" . }}-sctp
   labels:
-    helm.sh/chart: {{ include "five-g-appl.chart" . }}
-    app.kubernetes.io/name: {{ include "five-g-appl.name" . }}-sctp
+    helm.sh/chart: {{ include "e2t.chart" . }}
+    app.kubernetes.io/name: {{ include "e2t.name" . }}-sctp
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
@@ -31,6 +31,6 @@ spec:
   loadBalancerIP: {{ tpl .Values.e2tsctp.sctpService.loadBalancerIP . }}
   {{ end }}
   selector:
-    app.kubernetes.io/name: {{ include "five-g-appl.name" . }}-sctp
+    app.kubernetes.io/name: {{ include "e2t.name" . }}-sctp
     app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end -}}

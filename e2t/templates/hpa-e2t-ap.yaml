@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "five-g-appl.fullname" . }}
+  name: {{ include "e2t.fullname" . }}
   labels:
-    {{- include "five-g-appl.labels" . | nindent 4 }}
+    {{- include "e2t.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "five-g-appl.fullname" . }}
+    name: {{ include "e2t.fullname" . }}
   minReplicas: {{ .Values.e2tap.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.e2tap.autoscaling.maxReplicas }}
   metrics:

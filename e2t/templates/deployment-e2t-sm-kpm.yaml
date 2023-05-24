@@ -1,16 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "five-g-appl.fullname" . }}-sm-kpm
+  name: {{ include "e2t.fullname" . }}-sm-kpm
   labels:
-    {{- include "five-g-appl.labels" . | nindent 4 }}
+    {{- include "e2t.labels" . | nindent 4 }}
 spec:
 {{- if not .Values.e2smkpm.autoscaling.enabled }}
   replicas: {{ .Values.e2smkpm.replicas }}
 {{- end }}
   selector:
     matchLabels:
-      {{- include "five-g-appl.selectorLabels" . | nindent 6 }}
+      {{- include "e2t.selectorLabels" . | nindent 6 }}
   template:
     metadata:
     {{- with .Values.e2smkpm.podAnnotations }}
@@ -18,13 +18,13 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
-        {{- include "five-g-appl.labels" . | nindent 8 }}
+        {{- include "e2t.labels" . | nindent 8 }}
     spec:
       {{- with .Values.e2smkpm.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ include "five-g-appl.serviceAccountName" . }}
+      serviceAccountName: {{ include "e2t.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.e2smkpm.podSecurityContext | nindent 8 }}
       containers:
@@ -73,7 +73,7 @@ spec:
 #              path: /
 #              port: http
           volumeMounts:
-            - name: {{ include "five-g-appl.fullname" . }}-bootstrap
+            - name: {{ include "e2t.fullname" . }}-bootstrap
               mountPath: {{ .Values.e2smkpm.bootstrapFile }}
               subPath: "bootstrap.txt"
             {{ if and (.Values.e2smkpm.developerMode.enabled) (.Values.e2smkpm.developerMode.hostPath) }}
@@ -104,9 +104,9 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-        - name: {{ include "five-g-appl.fullname" . }}-bootstrap
+        - name: {{ include "e2t.fullname" . }}-bootstrap
           configMap:
-            name: {{ include "five-g-appl.fullname" . }}-bootstrap
+            name: {{ include "e2t.fullname" . }}-bootstrap
 
         {{ if and (.Values.e2smkpm.developerMode.enabled) (.Values.e2smkpm.developerMode.hostPath) }}
         - name: dev-work-dir
