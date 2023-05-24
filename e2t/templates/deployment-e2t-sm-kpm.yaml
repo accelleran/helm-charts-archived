@@ -53,8 +53,6 @@ spec:
           env:
             - name: NATS_SERVICE_URL
               value: nats://{{ tpl .Values.natsHostname . }}:{{ tpl .Values.natsPort . }}
-            - name: ZLOG_CONF_PATH
-              value: /zlog.conf
             - name: BOOTSTRAP_FILENAME
               value: {{ .Values.e2smkpm.bootstrapFile }}
             - name: JAEGER_AGENT_HOST
@@ -75,9 +73,6 @@ spec:
 #              path: /
 #              port: http
           volumeMounts:
-            - name: {{ include "five-g-appl.fullname" . }}-zlog-conf
-              mountPath: /zlog.conf
-              subPath: "zlog.conf"
             - name: {{ include "five-g-appl.fullname" . }}-bootstrap
               mountPath: {{ .Values.e2smkpm.bootstrapFile }}
               subPath: "bootstrap.txt"
@@ -109,10 +104,6 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-        - name: {{ include "five-g-appl.fullname" . }}-zlog-conf
-          configMap:
-            name: {{ include "five-g-appl.fullname" . }}-zlog-conf
-
         - name: {{ include "five-g-appl.fullname" . }}-bootstrap
           configMap:
             name: {{ include "five-g-appl.fullname" . }}-bootstrap

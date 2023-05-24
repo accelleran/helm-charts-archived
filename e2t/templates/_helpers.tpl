@@ -2,13 +2,7 @@
 Expand the name of the chart.
 */}}
 {{- define "five-g-appl.name" -}}
-{{- if index .Values "e2tsctp" }}
-{{- default .Chart.Name .Values.e2tsctp.nameOverride | trunc 63 | trimSuffix "-" }}
-{{- else if index .Values "e2tap" }}
-{{- default .Chart.Name .Values.e2tap.nameOverride | trunc 63 | trimSuffix "-" }}
-{{- else }}
-{{- default .Chart.Name .Values.e2smkpm.nameOverride | trunc 63 | trimSuffix "-" }}
-{{- end }}
+{{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
@@ -17,27 +11,11 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 If release name contains chart name it will be used as a full name.
 */}}
 {{- define "five-g-appl.fullname" -}}
-{{- if index .Values "e2tsctp" }}
-    {{- if .Values.e2tsctp.fullnameOverride }}
-    {{- .Values.e2tsctp.fullnameOverride | trunc 63 | trimSuffix "-" }}
-    {{- else }}
-    {{- $name := default .Chart.Name .Values.e2tsctp.nameOverride }}
-    {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
-    {{- end }}
-{{- else if index .Values "e2tap" }}
-    {{- if .Values.e2tap.fullnameOverride }}
-    {{- .Values.e2tap.fullnameOverride | trunc 63 | trimSuffix "-" }}
-    {{- else }}
-    {{- $name := default .Chart.Name .Values.e2tap.nameOverride }}
-    {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
-    {{- end }}
+{{- if .Values.fullnameOverride }}
+{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
-    {{- if .Values.e2smkpm.fullnameOverride }}
-    {{- .Values.e2smkpm.fullnameOverride | trunc 63 | trimSuffix "-" }}
-    {{- else }}
-    {{- $name := default .Chart.Name .Values.e2smkpm.nameOverride }}
-    {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
-    {{- end }}
+{{- $name := default .Chart.Name .Values.nameOverride }}
+{{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" }}
 {{- end }}
 {{- end }}
 
@@ -62,13 +40,7 @@ drax/role: e2
 drax/name: e2t
 drax/component-name: {{ .Chart.Name }}
 drax/component-version: {{ .Chart.Version }}
-{{- if index .Values "e2tsctp" }}
 drax/instanceId: "{{ tpl .Values.bootstrapId . }}"
-{{- else if index .Values "e2tap" }}
-drax/instanceId: "{{ tpl .Values.bootstrapId . }}"
-{{- else }}
-drax/instanceId: "{{ tpl .Values.bootstrapId . }}"
-{{- end }}
 {{- end }}
 
 {{/*
