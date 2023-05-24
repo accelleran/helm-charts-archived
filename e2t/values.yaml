@@ -84,8 +84,6 @@ e2tsctp:
 
   imagePullSecrets:
     - name: accelleran-secret
-  nameOverride: ""
-  fullnameOverride: ""
 
   # Application Settings
   # cmd: "__APPNAME=amfController ./amfControllerAppl.exe"
@@ -184,8 +182,6 @@ e2tap:
 
   imagePullSecrets:
     - name: accelleran-secret
-  nameOverride: ""
-  fullnameOverride: ""
 
   # Application Settings
   # cmd: "__APPNAME=amfController ./amfControllerAppl.exe"
@@ -281,8 +277,6 @@ e2smkpm:
 
   imagePullSecrets:
     - name: accelleran-secret
-  nameOverride: ""
-  fullnameOverride: ""
 
   # Application Settings
   # cmd: "__APPNAME=amfController ./amfControllerAppl.exe"
