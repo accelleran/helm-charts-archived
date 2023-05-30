@@ -721,6 +721,11 @@ cell-wrapper:
 
 longhorn:
   enabled: true
+  persistence:
+  defaultClassReplicaCount: 1
+
+  defaultSettings:
+    defaultReplicaCount: 1
 
 grafana:
   enabled: true
@@ -728,6 +733,13 @@ grafana:
     type: pvc
     enabled: true
     storageClassName: longhorn
+
+  service:
+    enabled: true
+    type: NodePort
+    port: 80
+    targetPort: 3000
+    nodePort: 30300
 
   # Administrator credentials when not using an existing secret (see below)
   adminUser: accelleran

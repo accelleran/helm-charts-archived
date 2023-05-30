@@ -6,7 +6,7 @@
 
 # Release Notes ###############################
 
-## RIC 6.3.0-rc.2
+## RIC 6.4.0-rc.0
 
 # Services #####################################
 {{ if index .Values "acc-kafka" "enabled" }}## Kafka
@@ -18,8 +18,8 @@
 {{ if index .Values "dash-front-back-end" "enabled" }}## dRAX Dashboard
 {{ .Values.global.kubeIp }}:{{ index .Values "dash-front-back-end" "service" "nodePort" }} {{ end }}
 
-{{ if index .Values "acc-sys-dashboard" "enabled" }}## Grafana
-{{ .Values.global.kubeIp }}:{{ index .Values "acc-sys-dashboard" "grafana" "service" "nodePort" }} {{ end }}
+{{ if index .Values "grafana" "enabled" }}## Grafana
+{{ .Values.global.kubeIp }}:{{ index .Values "grafana" "service" "nodePort" }} {{ end }}
 
 {{ if .Values.global.enable4G }}### Accelleran 4G Infrastcuture ###
 {{ if index .Values "acc-4g-infrastructure" "acc-l2-update" "enabled" }}## E1000 Layer 2 Update Server
