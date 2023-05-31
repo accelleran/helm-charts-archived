@@ -88,49 +88,6 @@ acc-kminion:
 
 acc-sys-dashboard:
   enabled: true
-  prometheus:
-    alertmanager:
-      draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
-      draxNodeSelector:
-        draxName: "{{ .Values.global.draxName }}"
-    kubeStateMetrics:
-      draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
-      draxNodeSelector:
-        draxName: "{{ .Values.global.draxName }}"
-    pushgateway:
-      draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
-      draxNodeSelector:
-        draxName: "{{ .Values.global.draxName }}"
-    server:
-      draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
-      draxNodeSelector:
-        draxName: "{{ .Values.global.draxName }}"
-
-      # Retention policy on the Prometheus storage
-      retention: 15d
-
-    extraScrapeConfigs: |
-      - job_name: 5gPmCountersXapp
-        scrape_interval: 2s
-        static_configs:
-          - targets:
-            - "{{ .Values.global.kubeIp }}:30515"
-      - job_name: kafkaMonitoringJmx
-        static_configs:
-          - targets:
-            - "{{ .Release.Name }}-acc-kafka.{{ .Release.Namespace }}:5556"
-      - job_name: kafkaMonitoringKminion
-        static_configs:
-          - targets:
-            - "ric-acc-kminion:8080"
-      - job_name: nats4GMonitoring
-        static_configs:
-          - targets:
-            - "nats-service:7777"
-      - job_name: nats5GMonitoring
-        static_configs:
-          - targets:
-            - "ric-nats-5g:7777"
 
   kube-eagle:
     draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
@@ -751,6 +708,61 @@ longhorn:
 
   defaultSettings:
     defaultReplicaCount: 1
+
+prometheus:
+  alertmanager:
+    enabled: false
+
+  serviceAccounts:
+    kubeStateMetrics:
+      create: true
+      name: null
+    nodeExporter:
+      create: true
+      name: null
+    pushgateway:
+      create: true
+      name: null
+    server:
+      create: true
+      name: null
+
+  # Retention policy on the Prometheus storage
+  server:
+    name: server
+    persistentVolume:
+      enabled: true
+      storageClassName: longhorn
+      storageClass: longhorn
+    statefulSet:
+      enabled: true
+    retention: 15d
+    service:
+      type: NodePort
+      nodePort: 30304
+
+  extraScrapeConfigs: |
+    - job_name: 5gPmCountersXapp
+      scrape_interval: 2s
+      static_configs:
+        - targets:
+          - "{{ .Values.global.kubeIp }}:30515"
+    - job_name: kafkaMonitoringJmx
+      static_configs:
+        - targets:
+          - "{{ .Release.Name }}-acc-kafka.{{ .Release.Namespace }}:5556"
+    - job_name: kafkaMonitoringKminion
+      static_configs:
+        - targets:
+          - "ric-acc-kminion:8080"
+    - job_name: nats4GMonitoring
+      static_configs:
+        - targets:
+          - "nats-service:7777"
+    - job_name: nats5GMonitoring
+      static_configs:
+        - targets:
+          - "ric-nats-5g:7777"
 
 grafana:
   enabled: true
