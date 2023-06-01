@@ -43,6 +43,6 @@
 
 # Info #######################################
 
-Number of supported E2 nodes: {{ .Values.global.numOfE2Nodes }}
+Number of supported E2 nodes: {{ .Values.e2tap.numOfE2Nodes }}
 
 ###############################################
