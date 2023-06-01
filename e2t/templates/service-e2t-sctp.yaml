@@ -21,6 +21,5 @@ spec:
   loadBalancerIP: {{ tpl .Values.e2tsctp.sctpService.loadBalancerIP . }}
   {{ end }}
   selector:
-    app.kubernetes.io/name: {{ include "e2t.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    {{- include "e2t.sctp.selectorLabels" . | nindent 4 }}
 {{- end -}}

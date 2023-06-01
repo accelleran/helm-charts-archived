@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
-        {{- include "e2t.sctp.selectorLabels" . | nindent 8 }}
+        {{- include "e2t.sctp.labels" . | nindent 8 }}
     spec:
       {{- with .Values.e2tsctp.imagePullSecrets }}
       imagePullSecrets:
