@@ -676,15 +676,9 @@ config-api:
 cell-wrapper:
   enabled: false
 
-longhorn:
-  enabled: true
-  persistence:
-  defaultClassReplicaCount: 1
-
-  defaultSettings:
-    defaultReplicaCount: 1
-
 prometheus:
+  nodeSelector: {}
+
   alertmanager:
     enabled: false
 
@@ -711,8 +705,19 @@ prometheus:
       storageClass: longhorn
     statefulSet:
       enabled: true
+      labels:
+        drax/component-name: prometheus
+        drax/role: ric
+
+    podLabels:
+      drax/component-name: prometheus-server
+      drax/role: ric
+
     retention: 15d
     service:
+      labels:
+        drax/component-name: prometheus-server
+        drax/role: ric
       type: NodePort
       nodePort: 30304
 
@@ -741,6 +746,11 @@ prometheus:
 
 grafana:
   enabled: true
+  nodeSelector: {}
+  extraLabels:
+    drax/role: ric
+    drax/component-name: grafana
+
   persistence:
     type: pvc
     enabled: true
