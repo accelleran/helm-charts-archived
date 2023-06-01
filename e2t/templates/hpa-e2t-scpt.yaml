@@ -4,16 +4,7 @@ kind: HorizontalPodAutoscaler
 metadata:
   name: {{ include "e2t.fullname" . }}
   labels:
-    helm.sh/chart: {{ include "e2t.chart" . }}
-    app.kubernetes.io/name: {{ include "e2t.name" . }}-sctp
-    app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
-    drax/role: e2
-    drax/name: e2t
-    drax/component-name: {{ .Chart.Name }}-sctp
-    drax/component-version: {{ .Chart.Version }}
-    drax/instanceId: "{{ tpl .Values.e2tsctp.bootstrapId . }}"
+    {{- include "e2t.sctp.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1

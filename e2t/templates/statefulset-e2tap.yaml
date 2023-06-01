@@ -3,7 +3,7 @@ kind: StatefulSet
 metadata:
   name: {{ include "e2t.fullname" . }}
   labels:
-    {{- include "e2t.labels" . | nindent 4 }}
+    {{- include "e2t.e2ap.labels" . | nindent 4 }}
 spec:
   serviceName: {{ include "e2t.fullname" . }}-service
   {{- if not .Values.e2tap.autoscaling.enabled }}
@@ -11,7 +11,7 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "e2t.selectorLabels" . | nindent 6 }}
+      {{- include "e2t.e2ap.selectorLabels" . | nindent 6 }}
   template:
     metadata:
     {{- with .Values.e2tap.podAnnotations }}
@@ -19,7 +19,7 @@ spec:
         {{- toYaml . | nindent 8 }}
     {{- end }}
       labels:
-        {{- include "e2t.labels" . | nindent 8 }}
+        {{- include "e2t.e2ap.labels" . | nindent 8 }}
     spec:
       {{- with .Values.e2tap.imagePullSecrets }}
       imagePullSecrets:
