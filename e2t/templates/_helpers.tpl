@@ -35,7 +35,6 @@ helm.sh/chart: {{ include "e2t.chart" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
-{{ include "e2t.selectorLabels" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 drax/role: ric
 drax/instanceId: "{{ tpl .Values.bootstrapId . }}"
@@ -45,7 +44,6 @@ drax/instanceId: "{{ tpl .Values.bootstrapId . }}"
 Sctp labels
 */}}
 {{- define "e2t.sctp.labels" -}}
-helm.sh/chart: {{ include "e2t.chart" . }}
 {{ include "e2t.sctp.selectorLabels" . }}
 {{- end }}
 
@@ -53,7 +51,6 @@ helm.sh/chart: {{ include "e2t.chart" . }}
 E2ap labels
 */}}
 {{- define "e2t.e2ap.labels" -}}
-helm.sh/chart: {{ include "e2t.chart" . }}
 {{ include "e2t.e2ap.selectorLabels" . }}
 {{- end }}
 
@@ -61,7 +58,6 @@ helm.sh/chart: {{ include "e2t.chart" . }}
 Kpm labels
 */}}
 {{- define "e2t.kpm.labels" -}}
-helm.sh/chart: {{ include "e2t.chart" . }}
 {{ include "e2t.kpm.selectorLabels" . }}
 {{- end }}
 
