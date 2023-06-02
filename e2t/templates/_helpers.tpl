@@ -31,9 +31,11 @@ Common labels
 */}}
 {{- define "e2t.labels" -}}
 helm.sh/chart: {{ include "e2t.chart" . }}
+{{ include "e2t.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
+{{ include "e2t.selectorLabels" . }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 drax/role: ric
 drax/instanceId: "{{ tpl .Values.bootstrapId . }}"
@@ -43,7 +45,7 @@ drax/instanceId: "{{ tpl .Values.bootstrapId . }}"
 Sctp labels
 */}}
 {{- define "e2t.sctp.labels" -}}
-{{ include "e2t.labels" . }}
+helm.sh/chart: {{ include "e2t.chart" . }}
 {{ include "e2t.sctp.selectorLabels" . }}
 {{- end }}
 
@@ -51,7 +53,7 @@ Sctp labels
 E2ap labels
 */}}
 {{- define "e2t.e2ap.labels" -}}
-{{ include "e2t.labels" . }}
+helm.sh/chart: {{ include "e2t.chart" . }}
 {{ include "e2t.e2ap.selectorLabels" . }}
 {{- end }}
 
@@ -59,29 +61,40 @@ E2ap labels
 Kpm labels
 */}}
 {{- define "e2t.kpm.labels" -}}
-{{ include "e2t.labels" . }}
+helm.sh/chart: {{ include "e2t.chart" . }}
 {{ include "e2t.kpm.selectorLabels" . }}
+{{- end }}
+
+{{/*
+Selector labels
+*/}}
+{{- define "e2t.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "e2t.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Selector SCTP labels
 */}}
 {{- define "e2t.sctp.selectorLabels" -}}
-app.kubernetes.io/component: {{ include "e2t.name" . }}-sctp
+app.kubernetes.io/component: e2t-sctp
+{{ include "e2t.selectorLabels" . }}
 {{- end }}
 
 {{/*
 Selector E2AP labels
 */}}
 {{- define "e2t.e2ap.selectorLabels" -}}
-app.kubernetes.io/component: {{ include "e2t.name" . }}-e2ap
+app.kubernetes.io/component: e2t-e2ap
+{{ include "e2t.selectorLabels" . }}
 {{- end }}
 
 {{/*
 Selector KPM labels
 */}}
 {{- define "e2t.kpm.selectorLabels" -}}
-app.kubernetes.io/component: {{ include "e2t.name" . }}-sm-kpm
+app.kubernetes.io/component: e2t-sm-kpm
+{{ include "e2t.selectorLabels" . }}
 {{- end }}
 
 {{/*

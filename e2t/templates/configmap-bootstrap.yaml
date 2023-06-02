@@ -6,6 +6,6 @@ metadata:
     {{- include "e2t.labels" . | nindent 4 }}
 data:
   bootstrap.txt: |
-    redis.hostname:{{ tpl .Values.redisHostname . }}
-    redis.port:{{ tpl .Values.redisPort . }}
+    redis.hostname:{{ tpl .Values.redisConfig.hostname . }}
+    redis.port:{{ tpl .Values.redisConfig.port . }}
     instance.filter:{{ tpl .Values.bootstrapId . }}

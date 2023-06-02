@@ -31,8 +31,9 @@ tag: "master-c9d13a75"
 #   Value type: string
 #   Example:
 #
-redisHostname: "10.55.1.2"
-redisPort: "32200"
+redisConfig:
+  hostname: "10.55.1.2"
+  port: "32200"
 
 
 # dRAX Specific Node Selector

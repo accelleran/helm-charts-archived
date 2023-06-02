@@ -728,8 +728,9 @@ e2t:
   natsHostname:  "{{ .Values.global.kubeIp }}"
   natsPort: "31100" 
 
-  redisHostname:  "{{ .Values.global.kubeIp }}"
-  redisPort: "32200"
+  redisConfig:
+    hostname: "{{ .Values.global.kubeIp }}"
+    port: "32200"
 
   tag: ""
 
