@@ -6,9 +6,7 @@ metadata:
     {{- include "e2t.e2ap.labels" . | nindent 4 }}
 spec:
   serviceName: {{ include "e2t.fullname" . }}-service
-  {{- if not .Values.e2tap.autoscaling.enabled }}
   replicas: {{ tpl .Values.e2tap.numOfE2Nodes . }}
-  {{- end }}
   selector:
     matchLabels:
       {{- include "e2t.e2ap.selectorLabels" . | nindent 6 }}
@@ -54,10 +52,6 @@ spec:
             {{- if .Values.e2tap.extraEnvs }}
             {{ toYaml .Values.e2tap.extraEnvs | nindent 12 }}
             {{- end }}
-#          ports:
-#            - name: {{ tpl .Values.e2tap.service.name . }}
-#              containerPort: {{ .Values.e2tap.service.port}}
-#              protocol: {{ .Values.e2tap.service.protocol }}
 #          livenessProbe:
 #            httpGet:
 #              path: /

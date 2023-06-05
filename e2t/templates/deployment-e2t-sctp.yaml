@@ -5,9 +5,7 @@ metadata:
   labels:
     {{- include "e2t.sctp.labels"  . | nindent 4 }}
 spec:
-{{- if not .Values.e2tsctp.autoscaling.enabled }}
   replicas: {{ .Values.e2tsctp.replicaCount }}
-{{- end }}
   selector:
     matchLabels:
        {{- include "e2t.sctp.selectorLabels" . | nindent 6 }}

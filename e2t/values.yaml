@@ -16,14 +16,6 @@ natsHostname: "10.55.1.2"
 natsPort: "31100"
 
 
-# Version of the 5G applications
-#   Description: This is the version of the 5G applications
-#                in DockerHub.
-#   Value type: string
-#
-tag: "master-c9d13a75"
-
-
 # Redis settings
 #   Description: Certain application need to be able to reach
 #                Redis. Here we configure the Redis hostname
@@ -70,6 +62,7 @@ serviceAccount:
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name: ""
+
 nameOverride: ""
 fullnameOverride: ""
 
@@ -89,7 +82,6 @@ e2tsctp:
     - name: accelleran-secret
 
   # Application Settings
-  # cmd: "__APPNAME=amfController ./amfControllerAppl.exe"
   cmd: "./sctpE2apAppl.exe"
 
   args: []
@@ -130,19 +122,6 @@ e2tsctp:
     nodePort: 31900
     # externalTrafficPolicy: "Local"
 
-  ingress:
-    enabled: false
-    annotations: {}
-      # kubernetes.io/ingress.class: nginx
-      # kubernetes.io/tls-acme: "true"
-    hosts:
-      - host: chart-example.local
-        paths: []
-    tls: []
-    #  - secretName: chart-example-tls
-    #    hosts:
-    #      - chart-example.local
-
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
@@ -154,13 +133,6 @@ e2tsctp:
     # requests:
     #   cpu: 100m
     #   memory: 128Mi
-
-  autoscaling:
-    enabled: false
-    minReplicas: 1
-    maxReplicas: 100
-    targetCPUUtilizationPercentage: 80
-    # targetMemoryUtilizationPercentage: 80
 
   nodeSelector: {}
 
@@ -183,7 +155,6 @@ e2tap:
     - name: accelleran-secret
 
   # Application Settings
-  # cmd: "__APPNAME=amfController ./amfControllerAppl.exe"
   cmd: "./e2ApAppl.exe"
 
   args: []
@@ -212,29 +183,6 @@ e2tap:
     runAsUser: 0
     privileged: true
 
-  service:
-    enabled: false
-    name: "e2-service"
-    type: NodePort
-    protocol: SCTP
-    port: 80
-    # loadBalancerIP:
-    # nodePort:
-    # externalTrafficPolicy: "Local"
-
-  ingress:
-    enabled: false
-    annotations: {}
-      # kubernetes.io/ingress.class: nginx
-      # kubernetes.io/tls-acme: "true"
-    hosts:
-      - host: chart-example.local
-        paths: []
-    tls: []
-    #  - secretName: chart-example-tls
-    #    hosts:
-    #      - chart-example.local
-
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
@@ -246,13 +194,6 @@ e2tap:
     # requests:
     #   cpu: 100m
     #   memory: 128Mi
-
-  autoscaling:
-    enabled: false
-    minReplicas: 1
-    maxReplicas: 100
-    targetCPUUtilizationPercentage: 80
-    # targetMemoryUtilizationPercentage: 80
 
   nodeSelector: {}
 
@@ -274,7 +215,6 @@ e2smkpm:
     - name: accelleran-secret
 
   # Application Settings
-  # cmd: "__APPNAME=amfController ./amfControllerAppl.exe"
   cmd: "./e2SmKpmAppl.exe"
 
   args: []
@@ -305,29 +245,6 @@ e2smkpm:
     runAsUser: 0
     privileged: true
 
-  service:
-    enabled: false
-    name: "e2-kpm-sm"
-    type: NodePort
-    protocol: SCTP
-    port: 80
-    # loadBalancerIP:
-    # nodePort:
-    # externalTrafficPolicy: "Local"
-
-  ingress:
-    enabled: false
-    annotations: {}
-      # kubernetes.io/ingress.class: nginx
-      # kubernetes.io/tls-acme: "true"
-    hosts:
-      - host: chart-example.local
-        paths: []
-    tls: []
-    #  - secretName: chart-example-tls
-    #    hosts:
-    #      - chart-example.local
-
   resources: {}
     # We usually recommend not to specify default resources and to leave this as a conscious
     # choice for the user. This also increases chances charts run on environments with little
@@ -339,13 +256,6 @@ e2smkpm:
     # requests:
     #   cpu: 100m
     #   memory: 128Mi
-
-  autoscaling:
-    enabled: false
-    minReplicas: 1
-    maxReplicas: 100
-    targetCPUUtilizationPercentage: 80
-    # targetMemoryUtilizationPercentage: 80
 
   nodeSelector: {}
 

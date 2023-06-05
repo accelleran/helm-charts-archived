@@ -5,9 +5,7 @@ metadata:
   labels:
     {{- include "e2t.kpm.labels" . | nindent 4 }}
 spec:
-{{- if not .Values.e2smkpm.autoscaling.enabled }}
   replicas: {{ .Values.e2smkpm.replicaCount }}
-{{- end }}
   selector:
     matchLabels:
       {{- include "e2t.kpm.selectorLabels" . | nindent 6 }}
@@ -50,10 +48,6 @@ spec:
             {{- if .Values.e2smkpm.extraEnvs }}
             {{ toYaml .Values.e2smkpm.extraEnvs | nindent 12 }}
             {{- end }}
-#          ports:
-#            - name: {{ tpl .Values.e2smkpm.service.name . }}
-#              containerPort: {{ .Values.e2smkpm.service.port}}
-#              protocol: {{ .Values.e2smkpm.service.protocol }}
 #          livenessProbe:
 #            httpGet:
 #              path: /
