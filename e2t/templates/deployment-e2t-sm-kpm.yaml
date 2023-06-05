@@ -6,7 +6,7 @@ metadata:
     {{- include "e2t.kpm.labels" . | nindent 4 }}
 spec:
 {{- if not .Values.e2smkpm.autoscaling.enabled }}
-  replicas: {{ .Values.e2smkpm.replicas }}
+  replicas: {{ .Values.e2smkpm.replicaCount }}
 {{- end }}
   selector:
     matchLabels:
