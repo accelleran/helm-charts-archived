@@ -60,7 +60,7 @@ acc-kafka:
     KAFKA_ADVERTISED_HOST_NAME: "{{ .Values.global.kubeIp }}"
     KAFKA_ZOOKEEPER_CONNECT: "{{ .Release.Name }}-zookeeper.{{ .Release.Namespace }}:2181"
     KAFKA_BROKER_ID: "0"
-    KAFKA_CREATE_TOPICS: "accelleran.drax.4g.ric.raw.network_state:1:1,accelleran.drax.4g.ric.raw.messages:1:1,accelleran.drax.4g.ric.raw.service_discovery:1:1,accelleran.drax.4g.ric.raw.ue_measurements:1:1,accelleran.drax.5g.ric.raw.cu_state:1:1,accelleran.drax.5g.ric.raw.ue_measurements:1:1,accelleran.drax.5g.ric.raw.pm_counters:1:1,accelleran.drax.5g.ric.raw.messages:1:1,accelleran.drax.5g.ric.processed.pm_counters:1:1"
+    KAFKA_CREATE_TOPICS: "accelleran.drax.4g.ric.raw.network_state:1:1,accelleran.drax.4g.ric.raw.messages:1:1,accelleran.drax.4g.ric.raw.service_discovery:1:1,accelleran.drax.4g.ric.raw.ue_measurements:1:1,accelleran.drax.5g.ric.raw.cu_state:1:1,accelleran.drax.5g.ric.raw.ue_measurements:1:1,accelleran.drax.5g.ric.raw.pm_counters:1:1,accelleran.drax.5g.ric.raw.messages:1:1,accelleran.drax.5g.ric.processed.pm_counters:1:1,accelleran.drax.5g.ric.raw.ran_control_response:1:1"
     KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
     JMX_PORT: "9010"
 
@@ -480,10 +480,10 @@ golang-nkafka-5g:
   image:
     repository: accelleran/golang-nkafka-5g
     pullPolicy: IfNotPresent
-    tag: "1.2.0_R3.3.0_hoegaarden_CW2.0.0-rc.5"
+    tag: "1.3.0_R4.1.0-rc6_jupiler_CW2.2.0-rc.1"
 
   initConfig:
-    kafkaTopicsCheck: "accelleran.drax.5g.ric.raw.messages,accelleran.drax.5g.ric.raw.pm_counters,accelleran.drax.5g.ric.raw.ue_measurements,accelleran.drax.5g.ric.raw.cu_state"
+    kafkaTopicsCheck: "accelleran.drax.5g.ric.raw.messages,accelleran.drax.5g.ric.raw.pm_counters,accelleran.drax.5g.ric.raw.ue_measurements,accelleran.drax.5g.ric.raw.cu_state,accelleran.drax.5g.ric.raw.ran_control_response"
 
   kafkaUrl: "{{ .Release.Name }}-acc-kafka.{{ .Release.Namespace }}:9092"
   natsUrl: "{{ .Release.Name }}-nats-5g.{{ .Release.Namespace }}:4222"
@@ -518,7 +518,7 @@ golang-nkafka-4g:
   image:
     repository: accelleran/golang-nkafka-4g
     pullPolicy: IfNotPresent
-    tag: "1.1.0"
+    tag: "1.3.0"
 
   initConfig:
     kafkaTopicsCheck: "accelleran.drax.4g.ric.raw.messages,accelleran.drax.4g.ric.raw.service_discovery,accelleran.drax.4g.ric.raw.ue_measurements"
@@ -736,3 +736,6 @@ config-api:
     default_oran_namespace_4g: "default"
     service_monitor_host: "acc-service-monitor"
     service_monitor_port: "80"
+
+cell-wrapper:
+  enabled: false

@@ -29,8 +29,10 @@ dashboards:
       file: dashboards/5g-health-dashboard.json
     5g-monitoring-dashboard:
       file: dashboards/5g-monitoring-dashboard.json
-    5g-pm-counters:
-      file: dashboards/5g-pm-counters.json
+    5g-cucp-pm-counters:
+      file: dashboards/5g-cucp-pm-counters.json
+    5g-cuup-pm-counters:
+      file: dashboards/5g-cuup-pm-counters.json
     kafka-cluster-monitoring:
       file: dashboards/kafka-cluster-monitoring.json
     nats-monitoring:
