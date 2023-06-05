@@ -69,8 +69,6 @@ fullnameOverride: ""
 
 e2tsctp:
 
-  enabled: true
-
   replicaCount: 1
 
   image:
@@ -142,7 +140,6 @@ e2tsctp:
   affinity: {}
 
 e2tap:
-  enabled: true
 
   numOfE2Nodes: "5"
 

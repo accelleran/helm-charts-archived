@@ -4,7 +4,7 @@
 
 # Services ####################################
 
-{{ if .Values.e2tsctp.enabled -}}
+{{ if .Values.e2tsctp.sctpService.enabled -}}
 ## E2 Termination SCTP
 {{ if contains "NodePort" .Values.e2tsctp.sctpService.type }}
 Get the E2 Termination SCTP details by running these commands:
