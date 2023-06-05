@@ -116,11 +116,11 @@ e2tsctp:
   sctpService:
     enabled: true
     name: "e2-sctp"
-    type:  LoadBalancer
+    type:  NodePort
     protocol: SCTP
     port: 38482
-    # loadBalancerIP:
     nodePort: 31900
+    # loadBalancerIP:
     # externalTrafficPolicy: "Local"
 
   resources: {}
