@@ -168,10 +168,6 @@ e2tsctp:
 
   affinity: {}
 
-  developerMode:
-    enabled: false
-    hostPath: ""
-
 e2tap:
   enabled: true
 
@@ -263,10 +259,6 @@ e2tap:
   tolerations: []
 
   affinity: {}
-
-  developerMode:
-    enabled: false
-    hostPath: ""
 
 e2smkpm:
 
@@ -360,7 +352,3 @@ e2smkpm:
   tolerations: []
 
   affinity: {}
-
-  developerMode:
-    enabled: false
-    hostPath: ""

@@ -34,17 +34,6 @@ spec:
             {{- toYaml .Values.e2tap.securityContext | nindent 12 }}
           image: "{{ .Values.e2tap.image.repository }}:{{ tpl .Values.e2tap.image.tag . | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.e2tap.image.pullPolicy }}
-          {{ if .Values.e2tap.developerMode.enabled }}
-          command:
-            - sh
-            - "-c"
-            - |
-              /bin/bash <<'EOF'
-              echo "export __APPID=e2-ap-${HOSTNAME##*-}" > /home/accelleran/5G/dev/environment.sh
-              chmod +x /home/accelleran/5G/dev/environment.sh
-              while true; do sleep 30; done;
-              EOF
-          {{ else }}
           command:
             - sh
             - "-c"
@@ -53,7 +42,6 @@ spec:
               echo e2-ap-${HOSTNAME##*-}
               __APPID=e2-ap-${HOSTNAME##*-} {{ .Values.e2tap.cmd }} {{- if .Values.e2tap.args }}{{ range .Values.e2tap.args }} {{ .name }} {{ .value }}{{ end }}{{- end }}
               EOF
-          {{ end }}
           env:
             - name: NATS_SERVICE_URL
               value: nats://{{ tpl .Values.natsHostname . }}:{{ tpl .Values.natsPort . }}
@@ -82,10 +70,6 @@ spec:
             - name: {{ include "e2t.fullname" . }}-bootstrap
               mountPath: {{ .Values.e2tap.bootstrapFile }}
               subPath: "bootstrap.txt"
-            {{ if and (.Values.e2tap.developerMode.enabled) (.Values.e2tap.developerMode.hostPath) }}
-            - name: dev-work-dir
-              mountPath: /home/accelleran/5G/dev/
-            {{ end }}
           resources:
             {{- toYaml .Values.e2tap.resources | nindent 12 }}
           lifecycle:
@@ -110,13 +94,6 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-
         - name: {{ include "e2t.fullname" . }}-bootstrap
           configMap:
             name: {{ include "e2t.fullname" . }}-bootstrap
-
-        {{ if and (.Values.e2tap.developerMode.enabled) (.Values.e2tap.developerMode.hostPath) }}
-        - name: dev-work-dir
-          hostPath:
-            path: {{ .Values.e2tap.developerMode.hostPath }}
-        {{ end }}
