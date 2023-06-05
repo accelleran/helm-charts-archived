@@ -48,14 +48,6 @@ spec:
             {{- if .Values.e2smkpm.extraEnvs }}
             {{ toYaml .Values.e2smkpm.extraEnvs | nindent 12 }}
             {{- end }}
-#          livenessProbe:
-#            httpGet:
-#              path: /
-#              port: http
-#          readinessProbe:
-#            httpGet:
-#              path: /
-#              port: http
           volumeMounts:
             - name: {{ include "e2t.fullname" . }}-bootstrap
               mountPath: {{ .Values.e2smkpm.bootstrapFile }}

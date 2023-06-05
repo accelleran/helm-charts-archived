@@ -54,14 +54,6 @@ spec:
             - name: {{ tpl .Values.e2tsctp.sctpService.name . }}
               containerPort: {{ .Values.e2tsctp.sctpService.port}}
               protocol: {{ .Values.e2tsctp.sctpService.protocol }}
-#          livenessProbe:
-#            httpGet:
-#              path: /
-#              port: http
-#          readinessProbe:
-#            httpGet:
-#              path: /
-#              port: http
           volumeMounts:
             - name: {{ include "e2t.fullname" . }}-bootstrap
               mountPath: {{ .Values.e2tsctp.bootstrapFile }}
