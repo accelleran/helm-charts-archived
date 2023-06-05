@@ -46,7 +46,8 @@ redisConfig:
 #   Example:
 #
 draxNodeSelectorEnabled: "false"
-draxName: "main"
+draxNodeSelector:
+  draxName: ""
 
 # Jaeger settings
 #   Description:  Sets the DNS hostname where the Jaeger agent is located
