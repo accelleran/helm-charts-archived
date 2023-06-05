@@ -44,6 +44,7 @@ drax/instanceId: "{{ tpl .Values.bootstrapId . }}"
 Sctp labels
 */}}
 {{- define "e2t.sctp.labels" -}}
+{{ include "e2t.labels" . }}
 {{ include "e2t.sctp.selectorLabels" . }}
 {{- end }}
 
@@ -51,6 +52,7 @@ Sctp labels
 E2ap labels
 */}}
 {{- define "e2t.e2ap.labels" -}}
+{{ include "e2t.labels" . }}
 {{ include "e2t.e2ap.selectorLabels" . }}
 {{- end }}
 
@@ -58,6 +60,7 @@ E2ap labels
 Kpm labels
 */}}
 {{- define "e2t.kpm.labels" -}}
+{{ include "e2t.labels" . }}
 {{ include "e2t.kpm.selectorLabels" . }}
 {{- end }}
 
