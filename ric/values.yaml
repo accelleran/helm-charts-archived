@@ -902,11 +902,23 @@ loki-stack:
     enabled: false
   fluent-bit:
     enabled: true
+    podLabels:
+      drax/role: ric
+      drax/component-name: fluent-bit
+
+    serviceLabels:
+      drax/role: ric
+      drax/component-name: fluent-bit
+
     nodeSelector: {}
-    #loki:
-    #serviceName: {{ .Release.Name }}-loki.{{ .Release.Namespace }}
   loki:
     enabled: true
+    podLabels:
+      drax/role: ric
+      drax/component-name: loki
+    serviceLabels:
+      drax/role: ric
+      drax/component-name: loki
     nodeSelector: {}
     config:
       table_manager:
