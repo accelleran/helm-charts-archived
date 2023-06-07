@@ -38,9 +38,6 @@ dependencies:
     condition: dash-front-back-end.enabled
     version: 4.4.4
     repository: https://accelleran.github.io/helm-charts/
-  - name: loki-stack
-    version: 0.43.0
-    repository: https://accelleran.github.io/helm-charts/
   - name: acc-service-monitor
     condition: acc-service-monitor.enabled
     version: 1.0.0
@@ -115,3 +112,7 @@ dependencies:
     condition: prometheus.enabled
     version: 22.6.2
     repository: https://prometheus-community.github.io/helm-charts
+  - name: loki-stack
+    condition: loki-stack.enabled
+    version: 2.9.10
+    repository: https://grafana.github.io/helm-charts
