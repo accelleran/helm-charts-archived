@@ -103,3 +103,7 @@ dependencies:
     condition: cell-wrapper.enabled
     version: 2.2.0
     repository: https://accelleran.github.io/helm-charts/
+  - name: e2t
+    condition: e2t.enabled
+    version: 1.0.0-rc.1
+    repository: https://accelleran.github.io/helm-charts/

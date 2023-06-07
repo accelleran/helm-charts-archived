@@ -40,3 +40,13 @@ acc-4g-infrastructure:
       netconfConfig:
         enabled: true
         deleteExistingConfig: false
+
+e2t:
+  enabled: false
+  e2tsctp:
+    enabled: true
+  e2tap:
+    enabled: true
+    numOfE2Nodes: "5"
+  e2smkpm:
+    enabled: true
