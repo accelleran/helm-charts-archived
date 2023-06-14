@@ -52,8 +52,8 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: influxdb
     condition: influxdb.enabled
-    version: 5.0.2
-    repository: https://accelleran.github.io/helm-charts/
+    version: 4.12.1
+    repository: https://helm.influxdata.com/
   - name: vector
     condition: vector.enabled
     version: 0.7.0
