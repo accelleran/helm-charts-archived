@@ -245,14 +245,6 @@ acc-state-db:
     periodicPublish: true
     publishInterval: 2 # in seconds
 
-influxdb:
-  # Enable/disable installation of InfluxDB
-  enabled: true
-
-  draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
-  draxNodeSelector:
-    draxName: "{{ .Values.global.draxName }}"
-
 vector:
   # Enable/disable installation of Vector
   enabled: true
@@ -263,7 +255,7 @@ vector:
 
   initConfig:
     kafkaUrl: "{{ .Release.Name }}-acc-kafka.{{ .Release.Namespace }}:9092"
-    influxdbService: "{{ .Release.Name }}-influxdb-api.{{ .Release.Namespace }}:8086"
+    influxdbService: "{{ .Release.Name }}-influxdb.{{ .Release.Namespace }}:8086"
 
   config:
     kafka:
@@ -297,7 +289,7 @@ vectorfiveg:
 
   initConfig:
     kafkaUrl: "{{ .Release.Name }}-acc-kafka.{{ .Release.Namespace }}:9092"
-    influxdbService: "{{ .Release.Name }}-influxdb-api.{{ .Release.Namespace }}:8086"
+    influxdbService: "{{ .Release.Name }}-influxdb.{{ .Release.Namespace }}:8086"
 
   developerMode:
     enabled: false
@@ -803,7 +795,7 @@ grafana:
           isDefault: false
           name: InfluxDB-4G
           type: influxdb
-          url: http://{{ .Release.Name }}-influxdb-api.{{ .Release.Namespace }}:8086
+          url: http://{{ .Release.Name }}-influxdb.{{ .Release.Namespace }}:8086
           user: admin
           password: password
           database: db_4G
@@ -814,7 +806,7 @@ grafana:
           isDefault: false
           name: InfluxDB-5G
           type: influxdb
-          url: http://{{ .Release.Name }}-influxdb-api.{{ .Release.Namespace }}:8086
+          url: http://{{ .Release.Name }}-influxdb.{{ .Release.Namespace }}:8086
           user: admin
           password: password
           database: db_5G
@@ -940,3 +932,31 @@ loki-stack:
         retention_deletes_enabled: true
         # Must be a multiple of 168h
         retention_period: 672h
+
+influxdb:
+  # Enable/disable installation of InfluxDB
+  labels:
+    drax/role: ric
+    drax/component-name: influxdb
+  enabled: true
+  persistence:
+    storageClassName: longhorn
+  nodeSelector: {}
+  podLabels:
+    drax/role: ric
+    drax/component-name: influxdb
+  service:
+    type: NodePort
+    nodePorts:
+      http: 30303
+  initScripts:
+    enabled: true
+    scripts:
+      init_4g.iql: |+
+        CREATE DATABASE "db_4G" WITH DURATION 5d REPLICATION 1 NAME "rp_5d_4G"
+      init_5g.iql: |+
+        CREATE DATABASE "db_5G" WITH DURATION 5d REPLICATION 1 NAME "rp_5d_5G"
+  adminUser:
+    organization: "accelleran"
+    user: "admin"
+    password: "password"
