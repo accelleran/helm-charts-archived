@@ -744,7 +744,7 @@ e2t:
   enabled: false
 
   natsHostname:  "{{ .Values.global.kubeIp }}"
-  natsPort: "31100" 
+  natsPort: "31100"
 
   redisConfig:
     hostname: "{{ .Values.global.kubeIp }}"
@@ -755,7 +755,7 @@ e2t:
       draxName: "{{ .Values.global.draxName }}"
 
   e2tsctp:
-    enabled: true      
+    enabled: true
 
   e2tap:
     enabled: true
