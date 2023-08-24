@@ -105,5 +105,5 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: e2t
     condition: e2t.enabled
-    version: 1.0.0-rc.1
+    version: 1.0.0-rc.2
     repository: https://accelleran.github.io/helm-charts/
