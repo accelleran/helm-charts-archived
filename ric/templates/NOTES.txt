@@ -6,7 +6,7 @@
 
 # Release Notes ###############################
 
-## RIC 6.3.0
+## RIC 6.4.0
 
 # Services #####################################
 {{ if index .Values "acc-kafka" "enabled" }}## Kafka

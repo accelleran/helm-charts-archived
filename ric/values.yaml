@@ -739,3 +739,28 @@ config-api:
 
 cell-wrapper:
   enabled: false
+
+e2t:
+  enabled: false
+
+  natsHostname:  "{{ .Values.global.kubeIp }}"
+  natsPort: "31100"
+
+  redisConfig:
+    hostname: "{{ .Values.global.kubeIp }}"
+    port: "32200"
+
+  draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
+  draxNodeSelector:
+      draxName: "{{ .Values.global.draxName }}"
+
+  e2tsctp:
+    enabled: true
+
+  e2tap:
+    enabled: true
+
+    numOfE2Nodes: "5"
+
+  e2smkpm:
+    enabled: true
