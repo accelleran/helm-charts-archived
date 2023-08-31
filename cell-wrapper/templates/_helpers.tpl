@@ -29,6 +29,10 @@ Work-around to get the cw-inst deployment name for the instance-scaler
 {{- end -}}
 {{- end -}}
 
+{{- define "cell-wrapper.instance-scaler.fullname" -}}
+{{ printf "%s-instance-scaler" .Release.Name | trunc 63 | trimSuffix "-" }}
+{{- end -}}
+
 {{/*
 Work-around for selector labels for the instance-scaler
 */}}

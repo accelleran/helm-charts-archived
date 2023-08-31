@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "acc-common.fullname" . }}
+  name: {{ include "cell-wrapper.instance-scaler.fullname" $ }}
   labels:
     {{- include "cell-wrapper.instance-scaler.labels" . | nindent 4 }}
 spec:
@@ -24,7 +24,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      serviceAccountName: {{ ($values.serviceAccount).enabled | default (include "acc-common.fullname" .) | quote }}
+      serviceAccountName: {{ ($values.serviceAccount).enabled | default (include "cell-wrapper.instance-scaler.fullname" .) | quote }}
       securityContext:
         {{- toYaml $values.podSecurityContext | nindent 8 }}
       containers:
@@ -34,7 +34,7 @@ spec:
           image: "{{ $values.image.repository }}:{{ tpl $values.image.tag . | default .Chart.AppVersion }}"
           imagePullPolicy: {{ $values.image.pullPolicy }}
           volumeMounts:
-            - name: {{ include "acc-common.fullname" $ }}-instance-scaler
+            - name: {{ include "cell-wrapper.instance-scaler.fullname" $ }}
               mountPath: /config.yaml
               subPath: config.yaml
               readOnly: true
@@ -58,6 +58,6 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       volumes:
-        - name: {{ include "acc-common.fullname" $ }}-instance-scaler
+        - name: {{ include "cell-wrapper.instance-scaler.fullname" $ }}
           configMap:
-            name: {{ include "acc-common.fullname" $ }}
+            name: {{ include "cell-wrapper.instance-scaler.fullname" $ }}
