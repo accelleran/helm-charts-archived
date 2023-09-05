@@ -65,6 +65,14 @@ Kpm labels
 {{- end }}
 
 {{/*
+Rc labels
+*/}}
+{{- define "e2t.rc.labels" -}}
+{{ include "e2t.labels" . }}
+{{ include "e2t.rc.selectorLabels" . }}
+{{- end }}
+
+{{/*
 Selector labels
 */}}
 {{- define "e2t.selectorLabels" -}}
@@ -93,6 +101,14 @@ Selector KPM labels
 */}}
 {{- define "e2t.kpm.selectorLabels" -}}
 app.kubernetes.io/component: e2t-sm-kpm
+{{ include "e2t.selectorLabels" . }}
+{{- end }}
+
+{{/*
+Selector RC labels
+*/}}
+{{- define "e2t.rc.selectorLabels" -}}
+app.kubernetes.io/component: e2t-sm-rc
 {{ include "e2t.selectorLabels" . }}
 {{- end }}
 
