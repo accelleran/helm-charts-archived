@@ -764,3 +764,7 @@ e2t:
 
   e2smkpm:
     enabled: true
+  
+  e2smrc:
+    enabled: true
+
