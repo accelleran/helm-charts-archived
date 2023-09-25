@@ -47,7 +47,7 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: acc-service-orchestrator
     condition: acc-service-orchestrator.enabled
-    version: 2.4.1
+    version: 2.5.0
     repository: https://accelleran.github.io/helm-charts/
   - name: acc-state-db
     condition: global.enable4G
