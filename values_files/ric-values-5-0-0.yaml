@@ -1,12 +1,12 @@
 global:
-  kubeIp: "10.55.1.2"
+  kubeIp: "10.55.6.3"
   enable4G: true
   enable5G: true
 dash-front-back-end:
   config:
-    grafanaURL: "10.55.1.2"
-    nodeApiURL: "10.55.1.2"
-    apiUrl: "10.55.1.2"
+    grafanaURL: "10.55.6.3"
+    nodeApiURL: "10.55.6.3"
+    apiUrl: "10.55.6.3"
 acc-5g-infrastructure:
   metallb:
     configInline:
@@ -14,7 +14,7 @@ acc-5g-infrastructure:
         - name: default
           protocol: layer2
           addresses:
-            - 10.55.1.20-10.55.1.60
+            - 10.55.6.20-10.55.6.60
   jaeger:
     enabled: true
 nkafka-5g:
@@ -23,6 +23,7 @@ nkafka-5g:
 
 acc-4g-infrastructure:
   provisioner-dhcp:
+    enabled: false
     configuration:
       interface: eno1
   configurator:

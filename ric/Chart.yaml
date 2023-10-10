@@ -14,11 +14,11 @@ type: application
 
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
-version: 6.4.0
+version: 6.5.0
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application.
-appVersion: 6.4.0
+appVersion: 6.5.0
 
 # Dependencies
 dependencies:
@@ -36,7 +36,7 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: dash-front-back-end
     condition: dash-front-back-end.enabled
-    version: 4.4.2
+    version: 4.4.5
     repository: https://accelleran.github.io/helm-charts/
   - name: loki-stack
     version: 0.43.0
@@ -47,7 +47,7 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: acc-service-orchestrator
     condition: acc-service-orchestrator.enabled
-    version: 2.4.1
+    version: 2.5.0
     repository: https://accelleran.github.io/helm-charts/
   - name: acc-state-db
     condition: global.enable4G
@@ -93,7 +93,7 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: config-api
     condition: config-api.enabled
-    version: 1.1.5
+    version: 1.1.9
     repository: https://accelleran.github.io/helm-charts/
   - name: network-state-monitor
     condition: network-state-monitor.enabled
@@ -101,7 +101,7 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: cell-wrapper
     condition: cell-wrapper.enabled
-    version: 2.2.1
+    version: 2.3.0
     repository: https://accelleran.github.io/helm-charts/
   - name: e2t
     condition: e2t.enabled

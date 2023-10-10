@@ -480,7 +480,7 @@ golang-nkafka-5g:
   image:
     repository: accelleran/golang-nkafka-5g
     pullPolicy: IfNotPresent
-    tag: "1.3.0_R4.1.0-rc6_jupiler_CW2.2.0-rc.1"
+    tag: "1.3.3_R4.2.2_karmeliet_CW2.3.0-rc.0"
 
   initConfig:
     kafkaTopicsCheck: "accelleran.drax.5g.ric.raw.messages,accelleran.drax.5g.ric.raw.pm_counters,accelleran.drax.5g.ric.raw.ue_measurements,accelleran.drax.5g.ric.raw.cu_state,accelleran.drax.5g.ric.raw.ran_control_response"
@@ -518,7 +518,7 @@ golang-nkafka-4g:
   image:
     repository: accelleran/golang-nkafka-4g
     pullPolicy: IfNotPresent
-    tag: "1.3.0"
+    tag: "1.3.3"
 
   initConfig:
     kafkaTopicsCheck: "accelleran.drax.4g.ric.raw.messages,accelleran.drax.4g.ric.raw.service_discovery,accelleran.drax.4g.ric.raw.ue_measurements"

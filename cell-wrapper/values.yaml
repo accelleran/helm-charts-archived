@@ -5,14 +5,14 @@ global:
     # The name of this helm chart
     name: "cell-wrapper"
     # The version of this helm chart
-    helmVersion: "2.2.1"
+    helmVersion: "2.3.0"
 
   # Version of the application
   #   Description: This is the version of the application
   #                in DockerHub.
   #   Value type: string
   #
-  tag: "CW2.2.1"
+  tag: "CW2.3.0"
 
   # CW Instance ID
   #   Description:  The Instance ID of the CW component that
@@ -223,6 +223,7 @@ global:
     #     #   </health-check>
     #     internal: null
 
+
 cw-ctrl:
   enabled: true
 
@@ -245,6 +246,57 @@ cw-ctrl:
   draxNodeSelector:
     draxName: "{{ .Values.global.draxName }}"
 
+
+instance-scaler:
+  enabled: true
+
+  image:
+    repository: accelleran/instance-scaler
+    pullPolicy: IfNotPresent
+    tag: "v0.1.0"
+
+  serviceAccount:
+    create: true
+    annotations: {}
+    name: ""
+
+  rbac:
+    enabled: true
+    rules:
+      - apiGroups:
+        - apps
+        resources:
+        - deployments
+        verbs:
+        - "get"
+        - "update"
+
+  podAnnotations: {}
+
+  podSecurityContext: {}
+    # fsGroup: 2000
+
+  securityContext: {}
+
+  resources: {}
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+  nodeSelector: {}
+
+  draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
+  draxNodeSelector:
+    draxName: "{{ .Values.global.draxName }}"
+
+  tolerations: []
+
+  affinity: {}
+
+
 cw-inst:
   enabled: true
 
@@ -266,6 +318,14 @@ cw-inst:
   draxNodeSelectorEnabled: "{{ .Values.global.draxNodeSelectorEnabled }}"
   draxNodeSelector:
     draxName: "{{ .Values.global.draxName }}"
+
+  autoscaling:
+    enabled: true
+    minReplicas: null
+    maxReplicas: null
+    spareReplicas: null
+    factorReplicas: null
+
 
 netconf:
   enabled: true
@@ -372,6 +432,7 @@ netconf:
           {{- end -}}
           </admin-state>
         </cw-internal>
+
 
 jobs: []
   # - name: "<job_name>"
