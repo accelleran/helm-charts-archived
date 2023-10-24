@@ -10,6 +10,7 @@ spec:
     - port: {{ .Values.service.port }}
       nodePort: {{ .Values.service.nodePort }}
       protocol: TCP
+      targetPort: 8080
       name: {{ .Values.service.name }}
   selector:
     {{- include "acc-service-orchestrator.selectorLabels" . | nindent 4 }}

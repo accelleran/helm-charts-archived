@@ -43,11 +43,11 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: acc-service-monitor
     condition: acc-service-monitor.enabled
-    version: 0.7.0
+    version: 1.0.0
     repository: https://accelleran.github.io/helm-charts/
   - name: acc-service-orchestrator
     condition: acc-service-orchestrator.enabled
-    version: 2.5.0
+    version: 1.0.0
     repository: https://accelleran.github.io/helm-charts/
   - name: acc-state-db
     condition: global.enable4G
@@ -93,7 +93,7 @@ dependencies:
     repository: https://accelleran.github.io/helm-charts/
   - name: config-api
     condition: config-api.enabled
-    version: 1.1.5
+    version: 1.1.9-new-svc-mon
     repository: https://accelleran.github.io/helm-charts/
   - name: network-state-monitor
     condition: network-state-monitor.enabled

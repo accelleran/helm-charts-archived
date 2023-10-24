@@ -7,7 +7,7 @@ replicaCount: 1
 version: "{{ .Chart.AppVersion }}"
 
 image:
-  repository: accelleran/acc-service-orchestrator
+  repository: accelleran/service-orchestrator
   pullPolicy: IfNotPresent
   #pullPolicy: IfNotPresent
 
@@ -39,11 +39,11 @@ podSecurityContext:
 securityContext:
   capabilities:
     drop:
-    - ALL
+      - ALL
     add:
-    # Required for binding port 80
-    # Could be replaced by sysctl net.ipv4.ip_unprivileged_port_start=0, which is marked safe from K8S 1.22
-    - NET_BIND_SERVICE
+      # Required for binding port 80
+      # Could be replaced by sysctl net.ipv4.ip_unprivileged_port_start=0, which is marked safe from K8S 1.22
+      - NET_BIND_SERVICE
   # readOnlyRootFilesystem: true
   runAsNonRoot: true
   runAsUser: 10000

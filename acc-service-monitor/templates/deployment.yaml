@@ -34,14 +34,14 @@ spec:
             - name: {{ .Values.service.name }}
               containerPort: {{ .Values.service.port }}
               protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /services
-              port: {{ .Values.service.port }}
-          readinessProbe:
-            httpGet:
-              path: /services
-              port: {{ .Values.service.port }}
+          #livenessProbe:
+          #  httpGet:
+          #    path: /services
+          #    port: {{ .Values.service.port }}
+          #readinessProbe:
+          #  httpGet:
+          #    path: /services
+          #    port: {{ .Values.service.port }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- if or (.Values.nodeSelector) (eq (tpl .Values.draxNodeSelectorEnabled .) "true") }}
