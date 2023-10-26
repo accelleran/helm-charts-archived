@@ -6,6 +6,10 @@ replicaCount: 1
 
 version: "{{ .Chart.AppVersion }}"
 
+accelleranLicense:
+  enabled: "true"
+  licenseSecretName: "accelleran-license"
+
 image:
   repository: accelleran/service-orchestrator
   pullPolicy: IfNotPresent

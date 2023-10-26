@@ -31,7 +31,11 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ tpl .Values.version	. }}"
+          {{ if eq (tpl .Values.accelleranLicense.enabled .) "true" }}
+          image: "{{ .Values.image.repository }}-licensed:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          {{ else }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          {{ end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: KUBE_IP
@@ -44,6 +48,14 @@ spec:
             - name: {{ .Values.service.name }}
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          volumeMounts:      
+            {{ if eq (tpl .Values.accelleranLicense.enabled .) "true" }}
+            - mountPath: "/etc/license/license.crt"
+              subPath: "license.crt"
+              name: accelleran-license
+              readOnly: true
+            {{ end }}
+          command: ["/app/main"]
           #livenessProbe:
           #  httpGet:
           #    path: /
@@ -71,3 +83,9 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+        {{ if eq (tpl .Values.accelleranLicense.enabled .) "true" }}
+        - name: accelleran-license
+          secret:
+            secretName: {{ tpl .Values.accelleranLicense.licenseSecretName . }}
+        {{ end }}
