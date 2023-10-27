@@ -255,6 +255,9 @@ instance-scaler:
     pullPolicy: IfNotPresent
     tag: "v0.1.0"
 
+  imagePullSecrets:
+    - name: accelleran-secret
+
   serviceAccount:
     create: true
     annotations: {}
