@@ -9,6 +9,7 @@ data:
     {
       "production": {
         "config_id": "{{ .Values.config.config_id }}",
+        "defaultServiceName": "{{ tpl .Values.config.defaultServiceName . }}",
         "defaultServiceNamespace": "{{ tpl .Values.config.defaultServiceNamespace . }}",
         "defaultOranNamespace": "{{ tpl .Values.config.defaultOranNamespace . }}",
         "node_port": {{ .Values.service.port }},

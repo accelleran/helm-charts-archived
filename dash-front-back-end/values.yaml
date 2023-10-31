@@ -66,6 +66,7 @@ websocketService:
 
 config:
   config_id: "production"
+  defaultServiceName: "{{ .Release.Name }}-dash-front-back-end"
   defaultServiceNamespace: "default"
   defaultOranNamespace: "default"
   grafanaURL: "10.20.20.20"
