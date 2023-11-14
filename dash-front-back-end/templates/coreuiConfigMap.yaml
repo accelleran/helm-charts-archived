@@ -6,7 +6,5 @@ metadata:
     {{- include "dash-front-back-end.labels" . | nindent 4 }}
 data:
   config.js: |
-    window.GRAFANA_URL = "{{ tpl .Values.config.grafanaURL . }}";
     window.GRAFANA_PORT = "{{ tpl .Values.config.grafanaPort . }}";
-    window.API_URL = "{{ tpl .Values.config.apiUrl . }}";
     window.WEBSOCKET_PORT = "{{ tpl .Values.config.websocketPort . }}";

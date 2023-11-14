@@ -23,8 +23,8 @@ initImage:
 initConfig:
   kafkaUrl: "{{ .Release.Name }}-acc-kafka.{{ .Release.Namespace }}:9092"
   kafkaTopicsCheck: "accelleran.drax.4g.ric.raw.messages,accelleran.drax.4g.ric.raw.service_discovery,accelleran.drax.4g.ric.raw.ue_measurements,accelleran.drax.5g.ric.raw.cu_state,accelleran.drax.5g.ric.raw.ue_measurements,accelleran.drax.5g.ric.raw.pm_counters,accelleran.drax.5g.ric.raw.messages"
-  
-imagePullSecrets: 
+
+imagePullSecrets:
   - name: accelleran-secret
 nameOverride: ""
 fullnameOverride: ""
@@ -36,10 +36,11 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name:
 
-podSecurityContext: {}
+podSecurityContext:
+  {}
   # fsGroup: 2000
 
-securityContext: 
+securityContext:
   # capabilities:
   #   drop:
   #   - ALL
@@ -69,7 +70,6 @@ config:
   defaultServiceName: "{{ .Release.Name }}-dash-front-back-end"
   defaultServiceNamespace: "default"
   defaultOranNamespace: "default"
-  grafanaURL: "10.20.20.20"
   grafanaPort: "30300"
   nodeApiURL: "10.20.20.20"
   nodePort: "30315"
@@ -88,7 +88,6 @@ config:
   ksqldbPodName: "10.20.20.20"
   ksqldbPort: "30533"
   LteRadioControllerLabel: "4G-Radio-Controller"
-  apiUrl: "10.20.20.20"
   websocketPort: "31316"
   topologyExpired: 5000
   kafkaTopics:
@@ -99,7 +98,8 @@ config:
 
 ingress:
   enabled: false
-  annotations: {}
+  annotations:
+    {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
@@ -110,7 +110,8 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
+resources:
+  {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
