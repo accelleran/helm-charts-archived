@@ -5,14 +5,14 @@ global:
     # The name of this helm chart
     name: "cell-wrapper"
     # The version of this helm chart
-    helmVersion: "2.3.0"
+    helmVersion: "2.3.2"
 
   # Version of the application
   #   Description: This is the version of the application
   #                in DockerHub.
   #   Value type: string
   #
-  tag: "CW2.3.0"
+  tag: "CW2.3.2"
 
   # CW Instance ID
   #   Description:  The Instance ID of the CW component that
@@ -253,7 +253,10 @@ instance-scaler:
   image:
     repository: accelleran/instance-scaler
     pullPolicy: IfNotPresent
-    tag: "v0.1.0"
+    tag: "v0.1.1"
+
+  imagePullSecrets:
+    - name: accelleran-secret
 
   serviceAccount:
     create: true
