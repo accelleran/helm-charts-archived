@@ -13,8 +13,6 @@ data:
         "defaultServiceNamespace": "{{ tpl .Values.config.defaultServiceNamespace . }}",
         "defaultOranNamespace": "{{ tpl .Values.config.defaultOranNamespace . }}",
         "node_port": {{ .Values.service.port }},
-        "grafanaURL": "{{ tpl .Values.config.grafanaURL . }}",
-        "grafanaPort": "{{ .Values.config.grafanaPort }}",
         "nodeApiURL": "{{ tpl .Values.config.nodeApiURL . }}",
         "nodeApiPort": "{{ .Values.service.nodePort }}",
         "kafkaURL": "{{ tpl .Values.config.kafkaUrl . }}",
