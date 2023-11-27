@@ -90,6 +90,7 @@ config:
   apiUrl: "10.20.20.20"
   websocketPort: "31316"
   topologyExpired: 5000
+  ricVersionConfigmap: ""
   kafkaTopics:
     - "accelleran.drax.5g.ric.raw.cu_state"
     - "accelleran.drax.5g.ric.raw.ue_measurements"

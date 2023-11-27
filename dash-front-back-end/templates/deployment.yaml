@@ -32,6 +32,15 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ tpl .Values.version . }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if and .Values.config.ricVersionConfigmap (not (empty .Values.config.ricVersionConfigmap)) }}
+          env:
+          # Define the environment variable
+          - name: DRAX_VERSION
+            valueFrom:
+              configMapKeyRef:
+                name: {{ .Values.config.ricVersionConfigmap }}
+                key: draxVersion
+          {{- end }}      
           volumeMounts:
             - name: {{ include "dash-front-back-end.fullname" . }}-coreui-config
               mountPath: /usr/src/dashboard/core-ui/build/config.js

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ric-version-configmap
+data:
+  draxVersion: "{{ .Chart.Version }}"
+  
