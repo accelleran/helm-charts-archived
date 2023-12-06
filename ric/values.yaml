@@ -680,14 +680,6 @@ e2t:
   e2smrc:
     enabled: true
 
-longhorn:
-  enabled: true
-  persistence:
-  defaultClassReplicaCount: 1
-
-  defaultSettings:
-    defaultReplicaCount: 1
-
 prometheus:
   nodeSelector: {}
 
